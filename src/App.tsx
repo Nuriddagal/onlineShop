@@ -5,12 +5,22 @@ import { useAppDispatch, type RootState } from './state';
 
 import { useEffect } from 'react';
 import { fetchProducts } from './products';
+import type { Product } from './Types';
+import { addToBasket, removeFromBasket } from './basket';
 
 
 
 function App() {
 const {data, loading, error} = useSelector((state: RootState) => state.products);
+const basket = useSelector((state: RootState) => state.basket) 
 const dispatch = useAppDispatch();
+
+  const toBasket = (product: Product): void => {
+    dispatch(addToBasket(product))
+  }
+  const removesFromBasket = (product: Product): void => {
+    dispatch(removeFromBasket(product.id))
+  }
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -20,8 +30,9 @@ const dispatch = useAppDispatch();
         console.error('Failed to load products:', err)
       }
     }
+    console.log(basket)
     loadProducts()
-  }, [dispatch])
+  }, [dispatch, basket])
   if(loading) return <div>LOADING...</div>
   
   if(error) return <div>{error}</div>
@@ -54,7 +65,7 @@ const dispatch = useAppDispatch();
             <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
             <p className='products__title'>{data?.products[0].title}</p>
             <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
+            <button className='basket-button' onClick={() => toBasket(data?.products[0])}>TO BASKET</button>
           </div>
           <div className="products__card">
             {data?.products?.length && (
@@ -69,7 +80,7 @@ const dispatch = useAppDispatch();
             <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
             <p className='products__title'>{data?.products[0].title}</p>
             <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
+            <button className='basket-button' onClick={() => removesFromBasket(data?.products[0])}>TO BASKET</button>
           </div>
           <div className="products__card">
             {data?.products?.length && (

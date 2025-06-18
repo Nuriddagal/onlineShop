@@ -1,0 +1,24 @@
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
+import type { Basket, Product } from "./Types";
+
+const initialState: Basket = {
+  basket: []
+}
+const basketSlice = createSlice({
+  name:"basket",
+  initialState,
+  reducers: {
+    addToBasket(state, action: PayloadAction<Product>){
+      state.basket = [...state.basket, action.payload]
+    },
+    removeFromBasket(state, action: PayloadAction<number>){
+      const removeId = state.basket.findIndex(item => item.id === action.payload)
+      state.basket.splice(removeId, 1)
+    }
+  }
+    }
+  )
+
+export const {addToBasket, removeFromBasket} = basketSlice.actions
+export default basketSlice.reducer

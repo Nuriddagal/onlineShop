@@ -4,7 +4,7 @@ export type Products =  {
     skip: number,
     limit: number
 }
-type Product = {
+export type Product = {
     "id": number,
     "title": string,
     "description": string,
@@ -51,4 +51,7 @@ export type ProductsState = {
   data: Products | null,
   loading: boolean,
   error: string | null
+}
+export type Basket {
+  basket: Product[] | []
 }
