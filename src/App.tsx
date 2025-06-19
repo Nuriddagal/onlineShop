@@ -3,25 +3,35 @@ import { useSelector } from 'react-redux';
 
 import { useAppDispatch, type RootState } from './state';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import { fetchProducts } from './products';
+
 import type { Product } from './Types';
+
 import { addToBasket, removeFromBasket } from './basket';
+
+import { ProductCard } from './product-card';
+import { Basket } from "./Basket.tsx" 
 
 
 
 function App() {
-const {data, loading, error} = useSelector((state: RootState) => state.products);
-const basket = useSelector((state: RootState) => state.basket) 
-const dispatch = useAppDispatch();
+  const [load, setLoad] = useState<boolean>(false);
+  const [productId, setProductId] = useState<number>(30);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  const toBasket = (product: Product): void => {
+  const {data, loading, error} = useSelector((state: RootState) => state.products);
+  const {basket, counts} = useSelector((state: RootState) => state.basket);
+
+  const dispatch = useAppDispatch();
+  function addTo(product: Product)  {
     dispatch(addToBasket(product))
   }
-  const removesFromBasket = (product: Product): void => {
-    dispatch(removeFromBasket(product.id))
-  }
 
+  function removeFrom(id: number)  {
+    dispatch(removeFromBasket(id))
+  }
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -30,9 +40,30 @@ const dispatch = useAppDispatch();
         console.error('Failed to load products:', err)
       }
     }
-    console.log(basket)
     loadProducts()
-  }, [dispatch, basket])
+  }, [dispatch])
+  
+  useEffect(() => {
+    if(productId === 195) return
+    const observer = new IntersectionObserver((entries) => {
+      setLoad(!load)
+      if (entries[0].isIntersecting && !loading) {
+        productId === 180 ? setProductId(productId => productId + 15):
+        setProductId(productId => productId + 30); // Если мы достигли наблюдаемого элемента, загружаем следующую страницу
+      }
+    }, { threshold: 1.0 });
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        setLoad(!load)
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [loading, productId]);
   if(loading) return <div>LOADING...</div>
   
   if(error) return <div>{error}</div>
@@ -45,105 +76,35 @@ const dispatch = useAppDispatch();
       </div>
     );
   } 
-
+      
   return (
     <>
       <header className='header'><h1>blueberries</h1></header>
       <main className='wrapper'>
         <div className="products">
           <div className="products__wrapper">
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button' onClick={() => toBasket(data?.products[0])}>TO BASKET</button>
+            {data?.products?.length && data?.products.map((product, id) => id <= productId && (
+              <ProductCard product={product} id={id} addTo={addTo}/>
+            ))
+            }
+          {load &&(
+            <div className="products__card">
+                
+                <div className="image-wrapper">
+                  LOADING...
+                  {data?.total}
+                </div>
+               
+                <p className='products__price'>$LOADING</p>
+                    <p className='products__title'>LOADING</p>
+                    <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />LOADING</p>
+                    <button className='basket-button'>TO BASKET</button>
           </div>
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button' onClick={() => removesFromBasket(data?.products[0])}>TO BASKET</button>
+          )}
           </div>
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
-          </div>
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
-          </div>
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
-          </div>
-          <div className="products__card">
-            {data?.products?.length && (
-              <div className="image-wrapper">
-                <img 
-                src={data?.products[0].images[0]} 
-                alt={data?.products[0].title}
-                className="products__image"
-                />
-              </div>
-            )}
-            <p className='products__price'>${Math.floor((Math.random() * 50) + 10)}</p>
-            <p className='products__title'>{data?.products[0].title}</p>
-            <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{data?.products[0]?.rating}</p>
-            <button className='basket-button'>TO BASKET</button>
-          </div>
-          </div>
+          <div ref={loadMoreRef}></div>
         </div>
+        <Basket counts={counts} products={basket} addTo={addTo} removeFrom={removeFrom}/>
       </main>
       
     </>

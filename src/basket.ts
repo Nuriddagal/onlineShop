@@ -3,14 +3,20 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Basket, Product } from "./Types";
 
 const initialState: Basket = {
-  basket: []
+  basket: [],
+  counts: {}
 }
 const basketSlice = createSlice({
   name:"basket",
   initialState,
   reducers: {
     addToBasket(state, action: PayloadAction<Product>){
-      state.basket = [...state.basket, action.payload]
+      if(action.payload.title in state.counts ){
+        state.counts[action.payload.title] += 1;
+      }else{
+        state.basket = [...state.basket, action.payload]
+        state.counts[action.payload.title] = 1;
+      } 
     },
     removeFromBasket(state, action: PayloadAction<number>){
       const removeId = state.basket.findIndex(item => item.id === action.payload)

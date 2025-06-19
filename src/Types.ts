@@ -9,6 +9,7 @@ export type Product = {
     "title": string,
     "description": string,
     "category": string,
+    "price": number,
     "discountPercentage": number,
     "rating": number,
     "stock": number,
@@ -30,7 +31,6 @@ export type Product = {
       "meta": MetaInfo,
       "images": string[],
       "thumbnail": string
-    
 }
 type ReviewInfo = {
     "rating": number,
@@ -52,6 +52,26 @@ export type ProductsState = {
   loading: boolean,
   error: string | null
 }
-export type Basket {
-  basket: Product[] | []
+export type Basket ={
+  basket: Product[] | [],
+  counts: {
+   [key: string]: number
+  }
 }
+export type CardState = {
+    product: Product,
+    id: number,
+    addTo: (product: Product) => void,
+    removeFrom?: (id: number) => void,
+    counts?: {
+      [key: string]: number
+    }
+} 
+export type BasketState = {
+    products: Product[],
+    addTo: (product: Product) => void,
+    removeFrom?: (id: number) => void,
+    counts: {
+      [key: string]: number
+    }
+} 
