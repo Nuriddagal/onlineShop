@@ -7,5 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'dist', // По умолчанию Vite использует 'dist'
   },
-  base: "onlineShop"
+  base: "/onlineShop/"
 })
