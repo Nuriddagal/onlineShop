@@ -29,8 +29,8 @@ function App() {
     dispatch(addToBasket(product))
   }
 
-  function removeFrom(id: number)  {
-    dispatch(removeFromBasket(id))
+  function removeFrom(product: Product)  {
+    dispatch(removeFromBasket(product))
   }
   useEffect(() => {
     const loadProducts = async () => {
@@ -44,26 +44,29 @@ function App() {
   }, [dispatch])
   
   useEffect(() => {
-    if(productId === 195) return
-    const observer = new IntersectionObserver((entries) => {
-      setLoad(!load)
-      if (entries[0].isIntersecting && !loading) {
-        productId === 180 ? setProductId(productId => productId + 15):
-        setProductId(productId => productId + 30); // Если мы достигли наблюдаемого элемента, загружаем следующую страницу
-      }
-    }, { threshold: 1.0 });
+    if(productId === 195) return;
 
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    const currentRef = loadMoreRef.current;
+    if(!currentRef) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      setLoad(prevLoad => !prevLoad)
+      if (entries[0].isIntersecting && !loading) {
+        setProductId(productId => Math.min(productId + 30, data?.products?.length || 0)); // Если мы достигли наблюдаемого элемента, загружаем следующую страницу
+      }
+    }, { threshold: 0.1 });
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (loadMoreRef.current) {
+      if (currentRef) {
         setLoad(!load)
-        observer.unobserve(loadMoreRef.current);
+        observer.unobserve(currentRef);
       }
     };
-  }, [loading, productId]);
+  }, [loading, load, productId, data?.products.length]);
   if(loading) return <div>LOADING...</div>
   
   if(error) return <div>{error}</div>
@@ -83,23 +86,18 @@ function App() {
       <main className='wrapper'>
         <div className="products">
           <div className="products__wrapper">
-            {data?.products?.length && data?.products.map((product, id) => id <= productId && (
-              <ProductCard product={product} id={id} addTo={addTo}/>
+            {data?.products?.length && data?.products.slice(0, productId).map((product) => (
+              <ProductCard key={product.id} product={product} addTo={addTo}/>
             ))
             }
-          {load &&(
-            <div className="products__card">
-                
-                <div className="image-wrapper">
-                  LOADING...
-                  {data?.total}
-                </div>
-               
-                <p className='products__price'>$LOADING</p>
-                    <p className='products__title'>LOADING</p>
-                    <p className='products__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />LOADING</p>
-                    <button className='basket-button'>TO BASKET</button>
-          </div>
+          {loading && (
+            <div className="products__card loading-state">
+              <div className="image-wrapper skeleton"></div>
+              <p className='products__price skeleton'></p>
+              <p className='products__title skeleton'></p>
+              <p className='products__rating skeleton'></p>
+              <button className='basket-button skeleton'></button>
+            </div>
           )}
           </div>
           <div ref={loadMoreRef}></div>

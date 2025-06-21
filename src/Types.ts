@@ -60,9 +60,8 @@ export type Basket ={
 }
 export type CardState = {
     product: Product,
-    id: number,
     addTo: (product: Product) => void,
-    removeFrom?: (id: number) => void,
+    removeFrom?: (product: Product) => void,
     counts?: {
       [key: string]: number
     }
@@ -70,7 +69,7 @@ export type CardState = {
 export type BasketState = {
     products: Product[],
     addTo: (product: Product) => void,
-    removeFrom?: (id: number) => void,
+    removeFrom?: (product: Product) => void,
     counts: {
       [key: string]: number
     }

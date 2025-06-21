@@ -2,11 +2,11 @@
 import type { CardState } from "./Types"
 
 
-export function BasketCard({product, id, addTo, removeFrom, counts}: CardState) {
+export function BasketCard({product, addTo, removeFrom, counts}: CardState) {
     
     return (
         <>
-                <div className="basket__card card" key={id}>
+                <div className="basket__card card">
                     <div className="image-wrapper">
                         <img 
                         src={product.thumbnail} 
@@ -19,7 +19,7 @@ export function BasketCard({product, id, addTo, removeFrom, counts}: CardState) 
                     <p className='card__rating'><img src="/src/assets/icons8-звезда-48.png" alt="star" className='products__star' />{product.rating}</p>
                     <button className='add-button' onClick={() => addTo(product)}>+</button>
                     <p>{counts?.[product.title]}</p>
-                    <button className="remove-button" onClick={() => removeFrom?.(product.id)}>-</button>
+                    <button className="remove-button" onClick={() => removeFrom?.(product)}>-</button>
           </div>
         </>
     )

@@ -3,11 +3,11 @@ import type { CardState} from "./Types";
 
 
 
-export function ProductCard({product, id, addTo}: CardState) {
+export function ProductCard({product, addTo}: CardState) {
  
     return (
         <>
-            <div className="products__card" key={id}>
+            <div className="products__card" >
                 {product && (
                     <div className="image-wrapper">
                         <img 

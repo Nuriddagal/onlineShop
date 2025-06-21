@@ -18,9 +18,13 @@ const basketSlice = createSlice({
         state.counts[action.payload.title] = 1;
       } 
     },
-    removeFromBasket(state, action: PayloadAction<number>){
-      const removeId = state.basket.findIndex(item => item.id === action.payload)
-      state.basket.splice(removeId, 1)
+    removeFromBasket(state, action: PayloadAction<Product>){
+      if(action.payload.title in state.counts && state.counts[action.payload.title] !== 1) {
+        state.counts[action.payload.title] -= 1
+      } else{
+        const removeId: number = state.basket.findIndex(item => item.id === action.payload.id)
+        state.basket.splice(removeId, 1)
+      }
     }
   }
     }
