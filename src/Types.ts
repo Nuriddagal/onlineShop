@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react"
+
 export type Products =  {
     products: Product[]
     total: number,
@@ -65,12 +67,24 @@ export type CardState = {
     counts?: {
       [key: string]: number
     }
+    setShowModal?: Dispatch<SetStateAction<boolean>>,
 } 
+export type Counts = {
+    [key: string]: number
+}
 export type BasketState = {
-    products: Product[],
+    basket: Product[],
     addTo: (product: Product) => void,
     removeFrom?: (product: Product) => void,
-    counts: {
-      [key: string]: number
-    }
+    counts: Counts
 } 
+export type AppRouteProps = {
+  productPage: ProductPageProps,
+  basketState: BasketState
+}
+export type ProductPageProps = {
+  visibleProducts: number,
+  products: Product[],
+  loadMoreRef: React.RefObject<HTMLDivElement | null> ,
+  addTo: (product: Product) => void,
+}

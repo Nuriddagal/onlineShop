@@ -1,0 +1,16 @@
+import { Routes, Route, type RouteObject} from "react-router-dom";
+
+import type { AppRouteProps } from "./Types";
+
+import { Basket } from "./pages/Basket";
+import { ProductPage } from "./pages/ProductPage";
+
+export function AppRoute({productPage, basketState}: AppRouteProps) {
+    const routes: RouteObject[] = [
+        {path: '/', element: <ProductPage key={location.pathname} {...productPage}/>},
+        {path: '/basket', element: <Basket {...basketState}/>},
+    ] 
+    return (
+        <Routes>{routes.map((route, index) => <Route key={`route-${index}`} path={route.path} element={route.element}></Route>)}</Routes>
+    )
+} 

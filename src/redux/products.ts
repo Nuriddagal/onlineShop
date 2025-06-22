@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./state";
-import type { Products, ProductsState } from "./Types";
+import type { Products, ProductsState } from "../Types";
 
 
 // Асинхронный запрос

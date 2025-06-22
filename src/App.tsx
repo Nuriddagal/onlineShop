@@ -1,25 +1,33 @@
-import './App.css'
-import { useSelector } from 'react-redux';
+import './styles/App.css'
 
-import { useAppDispatch, type RootState } from './state';
+import { useSelector } from 'react-redux';
 
 import { useEffect, useRef, useState } from 'react';
 
-import { fetchProducts } from './products';
-
 import type { Product } from './Types';
 
-import { addToBasket, removeFromBasket } from './basket';
+import { useAppDispatch, type RootState } from './redux/state.ts';
+import { fetchProducts } from './redux/products.ts';
+import { addToBasket, removeFromBasket } from './redux/basket.ts';
 
-import { ProductCard } from './product-card';
-import { Basket } from "./Basket.tsx" 
+import { AppRoute } from './AppRoute.tsx';
+
+import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 
 
 
 function App() {
   const [load, setLoad] = useState<boolean>(false);
-  const [productId, setProductId] = useState<number>(30);
-  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const [visibleProducts, setvisibleProducts] = useState<number>(30);
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const {data, loading, error} = useSelector((state: RootState) => state.products);
   const {basket, counts} = useSelector((state: RootState) => state.basket);
@@ -32,6 +40,26 @@ function App() {
   function removeFrom(product: Product)  {
     dispatch(removeFromBasket(product))
   }
+  const initObserver = () => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          setvisibleProducts(prev => Math.min(prev + 30, data?.products?.length || 0));
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    observerRef.current = observer;
+  };
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -44,29 +72,27 @@ function App() {
   }, [dispatch])
   
   useEffect(() => {
-    if(productId === 195) return;
-
     const currentRef = loadMoreRef.current;
-    if(!currentRef) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      setLoad(prevLoad => !prevLoad)
-      if (entries[0].isIntersecting && !loading) {
-        setProductId(productId => Math.min(productId + 30, data?.products?.length || 0)); // Если мы достигли наблюдаемого элемента, загружаем следующую страницу
-      }
-    }, { threshold: 0.1 });
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
+    initObserver()
     return () => {
       if (currentRef) {
         setLoad(!load)
-        observer.unobserve(currentRef);
+        observerRef.current?.disconnect();
       }
     };
-  }, [loading, load, productId, data?.products.length]);
+  }, [loading, load, visibleProducts, data?.products.length]);
+
+  useEffect(() => {
+    if(location.pathname === "/") {
+      initObserver()
+    };
+    if(location.pathname === "/basket") {
+      wrapperRef.current?.classList.add("basket-wrapper")
+    } else{
+      wrapperRef.current?.classList.remove("basket-wrapper")
+    }
+  },[location])
+
   if(loading) return <div>LOADING...</div>
   
   if(error) return <div>{error}</div>
@@ -74,37 +100,27 @@ function App() {
   if (!data?.products?.length) {
     return (
       <div className="empty-state">
-        <img src="/empty-cart.svg" alt="No products" />
+        <img src="#" alt="No products" />
         <p>No products available</p>
       </div>
     );
   } 
       
+  const products = data.products;
+
   return (
     <>
-      <header className='header'><h1>blueberries</h1></header>
-      <main className='wrapper'>
-        <div className="products">
-          <div className="products__wrapper">
-            {data?.products?.length && data?.products.slice(0, productId).map((product) => (
-              <ProductCard key={product.id} product={product} addTo={addTo}/>
-            ))
-            }
-          {loading && (
-            <div className="products__card loading-state">
-              <div className="image-wrapper skeleton"></div>
-              <p className='products__price skeleton'></p>
-              <p className='products__title skeleton'></p>
-              <p className='products__rating skeleton'></p>
-              <button className='basket-button skeleton'></button>
-            </div>
-          )}
-          </div>
-          <div ref={loadMoreRef}></div>
+      <header className='header'>
+        <div>
+          <h1 className='shopName'>blueberries</h1>
+            <input type="search" name="search" id="search" placeholder='The search is not working yet'/>
+          <button className='toBasket-btn' onClick={() => navigate("/basket")}>basket</button>
         </div>
-        <Basket counts={counts} products={basket} addTo={addTo} removeFrom={removeFrom}/>
+      </header>
+      <main ref={wrapperRef} className='wrapper'>
+        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo}} basketState={{basket, removeFrom, addTo, counts}}/>
       </main>
-      
+      {window.innerWidth <= 558 && <footer>footer</footer>}
     </>
   )
 }

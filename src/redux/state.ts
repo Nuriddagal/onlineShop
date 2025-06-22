@@ -1,9 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore} from "@reduxjs/toolkit";
 
 import productReducer from "./products"
-import basketReducer from "./basket"
+import basketReducer, { basketMiddleware } from "./basket"
 
 import { useDispatch } from "react-redux";
+
 
 export const store = configureStore({
     reducer:{
@@ -12,8 +13,8 @@ export const store = configureStore({
     },
      middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false
-    }),
+      serializableCheck: false,
+    }).concat(basketMiddleware),
   devTools: true
 })
 
