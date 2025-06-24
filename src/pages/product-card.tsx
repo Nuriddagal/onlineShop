@@ -19,7 +19,7 @@ export function ProductCard({product, addTo, setShowModal}: CardState) {
                     </div>
                     <p className='products__price'>${product.price}</p>
                     <p className='products__title'>{product.title}</p>
-                    <p className='products__rating'><img src="../assets/icons848.png" alt="star" className='products__star' />{product.rating}</p>
+                    <p className='products__rating'><img src="./src/assets/icons848.png" alt="star" className='products__star' />{product.rating}</p>
                     <button className='basket-button' onClick={() => addTo(product)}>
                         <p>{product.shippingInformation.replace("Ships", '')}</p><BasketSvg/>
                     </button>
