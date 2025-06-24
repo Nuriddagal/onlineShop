@@ -1,44 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import type { ProductPageProps } from "../Types";
 import { ProductCard } from "./product-card";
 import { useLocation } from "react-router";
+import { Modal } from "../modal";
+import { UseModal } from "../useModal";
 
 export function ProductPage({visibleProducts, products, loadMoreRef, addTo}: ProductPageProps) {
-  const [showModal, setShowModal] = useState(false);
-
-  const modalRef = useRef<HTMLDivElement>(null);
-  const scrollPosition = useRef<number>(0);
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const {setShowModal, overlayRef, modalRef, useModalEffect} = UseModal()
 
   const location = useLocation()
-
-  useEffect(() => {
-    const b = document.body;
-      
-    if (showModal) {
-       // Сохраняем позицию скролла
-      scrollPosition.current = window.scrollY;
-      // Блокируем скролл
-      b.style.overflowY = 'scroll';
-      b.style.position = 'fixed';
-      b.style.top = `-${scrollPosition.current}px`;
-      b.style.width = '100%';
-
-      overlayRef.current?.classList.add("active");
-      modalRef.current?.classList.add("open");
-    } else {
-      // Разблокируем скролл и восстанавливаем позицию
-      b.style.overflow = '';
-      b.style.position = '';
-      b.style.top = '';
-      b.style.width = '';
-      window.scrollTo(0, scrollPosition.current);
-      
-      overlayRef.current?.classList.remove("active");
-      modalRef.current?.classList.remove("open");
-    }
-  }, [showModal]);
   
+  useModalEffect()
   
     useEffect(() => {
     // Восстановление при возврате
@@ -70,20 +42,7 @@ export function ProductPage({visibleProducts, products, loadMoreRef, addTo}: Pro
           <div ref={loadMoreRef}></div>
         </div>
         {/* Затемняющий оверлей */}
-        <div ref={overlayRef} className="modal-overlay"></div>
-
-        {/* Модальное окно */}
-        <div ref={modalRef} className="notSignIn">
-                <p>!!TO ADD TO FAVORITE!!<br/> !!FIRST LOG IN!!</p>
-                <div>
-                  <button type="button" className="modalClose" onClick={() => {
-                    alert("Server not ready yet!")
-                    setShowModal(false)
-                  }}>Log In</button>
-                  <button type="button" className="modalClose" onClick={() => setShowModal(false)}>close</button>
-                </div>
-                
-        </div>
+        <Modal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef}/>
         </>
     )
 }

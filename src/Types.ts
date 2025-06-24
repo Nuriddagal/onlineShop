@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from "react"
+import type { NavigateFunction } from "react-router-dom"
 
 export type Products =  {
     products: Product[]
@@ -6,6 +7,7 @@ export type Products =  {
     skip: number,
     limit: number
 }
+
 export type Product = {
     "id": number,
     "title": string,
@@ -34,6 +36,7 @@ export type Product = {
       "images": string[],
       "thumbnail": string
 }
+
 type ReviewInfo = {
     "rating": number,
     "comment": string,
@@ -41,7 +44,9 @@ type ReviewInfo = {
     "reviewerName": string,
     "reviewerEmail": Email
 }
+
 type Email = `${string}@${string}.com`; 
+
 type MetaInfo = {
     "createdAt": string,
     "updatedAt": string,
@@ -54,39 +59,53 @@ export type ProductsState = {
   loading: boolean,
   error: string | null
 }
+
 export type Basket ={
   basket: Product[] | [],
-  counts: {
-   [key: string]: number,
-   totalCount: number,
-   totalPrice: number
-  }
+  counts: Counts
 }
+
 export type CardState = {
     product: Product,
     addTo: (product: Product) => void,
     removeFrom?: (product: Product) => void,
-    counts?: {
-      [key: string]: number
-    }
+    deleteFrom?: (product: Product) => void,
+    counts?: Counts
     setShowModal?: Dispatch<SetStateAction<boolean>>,
 } 
+
 export type Counts = {
-    [key: string]: number
+   [key: string]: number,
+   totalCount: number,
+   totalPrice: number
 }
+
 export type BasketState = {
     basket: Product[],
     addTo: (product: Product) => void,
-    removeFrom?: (product: Product) => void,
+    removeFrom: (product: Product) => void,
+    deleteFrom: (product: Product) => void,
     counts: Counts
 } 
+
 export type AppRouteProps = {
   productPage: ProductPageProps,
   basketState: BasketState
 }
+
 export type ProductPageProps = {
   visibleProducts: number,
   products: Product[],
   loadMoreRef: React.RefObject<HTMLDivElement | null> ,
   addTo: (product: Product) => void,
+}
+export type ModalProps = {
+    overlayRef: React.RefObject<HTMLDivElement | null>,
+    modalRef: React.RefObject<HTMLDivElement | null>,
+    setShowModal: Dispatch<SetStateAction<boolean>>
+}
+
+export type HeaderProps = {
+  navigate: NavigateFunction,
+  counts: Counts
 }

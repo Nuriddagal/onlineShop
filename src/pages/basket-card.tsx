@@ -2,7 +2,7 @@
 import type { CardState } from "../Types"
 
 
-export function BasketCard({product, addTo, removeFrom, counts}: CardState) {
+export function BasketCard({product, addTo, removeFrom, deleteFrom, counts}: CardState) {
     return (
         <>
             <div className="basket__card card">
@@ -13,12 +13,24 @@ export function BasketCard({product, addTo, removeFrom, counts}: CardState) {
                         className="card__image"
                         />
                     </div>
+                    <button type="button" className="delete_button" onClick={() => deleteFrom?.(product)}>
+                        <img src="../assets/delete.png" alt="delete" />
+                    </button>
                     <p className='card__price'>${((counts?.[product.title] || 1) * Math.round(product.price))}</p>
-                    <p className='card__title'>{product.title}</p>
-                    <button className='card__add-button' onClick={() => addTo(product)}>+</button>
-                    <input type="text" value={counts?.[product.title]} className="card__product-count" readOnly/>
-                    {/* <p className='card__product-count'></p> */}
-                    <button className="card__remove-button" onClick={() => removeFrom?.(product)}>-</button>
+
+                    <div className="card__info">
+                        <div className="wrap">
+                            <p className='card__title'>{product.title} - {product.brand}</p>
+                            <p className="card__minimumOrderQuantity">{product.minimumOrderQuantity} pcs</p>
+                            <p className="card__shippingInfo">{product.shippingInformation}</p>
+                        </div>
+                    </div>
+                    
+                    <div className="controller">
+                        <button className='card__add-button' onClick={() => addTo(product)}>+</button>
+                        <input type="text" value={counts?.[product.title]} className="card__product-count" readOnly/>
+                        <button className="card__remove-button" onClick={() => removeFrom?.(product)}>-</button>
+                    </div>       
             </div>
         </>
     )

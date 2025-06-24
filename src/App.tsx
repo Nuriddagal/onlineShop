@@ -8,7 +8,7 @@ import type { Product } from './Types';
 
 import { useAppDispatch, type RootState } from './redux/state.ts';
 import { fetchProducts } from './redux/products.ts';
-import { addToBasket, removeFromBasket } from './redux/basket.ts';
+import { addToBasket, deleteFromBasket, removeFromBasket } from './redux/basket.ts';
 
 import { AppRoute } from './AppRoute.tsx';
 
@@ -40,6 +40,9 @@ function App() {
 
   function removeFrom(product: Product)  {
     dispatch(removeFromBasket(product))
+  }
+  function deleteFrom(product: Product)  {
+    dispatch(deleteFromBasket(product))
   }
   
   const initObserver = useCallback(() => {
@@ -112,9 +115,9 @@ function App() {
 
   return (
     <>
-      <Header navigate={navigate}/>
+      <Header navigate={navigate} counts={counts}/>
       <main ref={wrapperRef} className='wrapper'>
-        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo}} basketState={{basket, removeFrom, addTo, counts}}/>
+        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo}} basketState={{basket, removeFrom, addTo, deleteFrom, counts}}/>
       </main>
       {window.innerWidth <= 558 && <footer>footer</footer>}
     </>
