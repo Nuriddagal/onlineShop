@@ -24,12 +24,18 @@ export function Basket({basket, addTo, removeFrom, counts}: BasketState) {
             )}
 
             {basket.length !== 0 && <button type="button" onClick={handleBack} className="to-main-btn">{`< `}TO MAIN</button>}
-            
+                <div className="basket-head">
+                <h3 className="basket-title">Basket</h3>
+                <p className="basket-count">{counts.totalCount} products</p>
+                </div>
              {basket && basket.map((product) => (
                 <BasketCard key={product.id} counts={counts} product={product} addTo={addTo} removeFrom={removeFrom}/>
             ))}
+            
         </div>
-           
+        <div className="order">
+                <p>Total: {counts.totalPrice}</p>
+        </div>
         </>
     )
 }

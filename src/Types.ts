@@ -57,7 +57,9 @@ export type ProductsState = {
 export type Basket ={
   basket: Product[] | [],
   counts: {
-   [key: string]: number
+   [key: string]: number,
+   totalCount: number,
+   totalPrice: number
   }
 }
 export type CardState = {

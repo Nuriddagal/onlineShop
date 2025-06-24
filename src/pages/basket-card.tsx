@@ -13,10 +13,11 @@ export function BasketCard({product, addTo, removeFrom, counts}: CardState) {
                         className="card__image"
                         />
                     </div>
-                    <p className='card__price'>${((counts?.[product.title] || 1) * Math.round(product.price)) - (counts?.[product.title] || 1) / 100}</p>
+                    <p className='card__price'>${((counts?.[product.title] || 1) * Math.round(product.price))}</p>
                     <p className='card__title'>{product.title}</p>
                     <button className='card__add-button' onClick={() => addTo(product)}>+</button>
-                    <p className='card__product-count'>{counts?.[product.title]}</p>
+                    <input type="text" value={counts?.[product.title]} className="card__product-count" readOnly/>
+                    {/* <p className='card__product-count'></p> */}
                     <button className="card__remove-button" onClick={() => removeFrom?.(product)}>-</button>
             </div>
         </>

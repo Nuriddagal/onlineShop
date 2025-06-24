@@ -2,7 +2,7 @@ import './styles/App.css'
 
 import { useSelector } from 'react-redux';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Product } from './Types';
 
@@ -14,6 +14,7 @@ import { AppRoute } from './AppRoute.tsx';
 
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router';
+import { Header } from './header.tsx';
 
 
 
@@ -40,7 +41,8 @@ function App() {
   function removeFrom(product: Product)  {
     dispatch(removeFromBasket(product))
   }
-  const initObserver = () => {
+  
+  const initObserver = useCallback(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
@@ -59,7 +61,7 @@ function App() {
     }
 
     observerRef.current = observer;
-  };
+  },[data?.products?.length, loading]);
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -80,7 +82,7 @@ function App() {
         observerRef.current?.disconnect();
       }
     };
-  }, [loading, load, visibleProducts, data?.products.length]);
+  }, [loading, load, visibleProducts, data?.products.length, initObserver]);
 
   useEffect(() => {
     if(location.pathname === "/") {
@@ -91,10 +93,10 @@ function App() {
     } else{
       wrapperRef.current?.classList.remove("basket-wrapper")
     }
-  },[location])
+  },[initObserver, location])
 
   if(loading) return <div>LOADING...</div>
-  
+   
   if(error) return <div>{error}</div>
   
   if (!data?.products?.length) {
@@ -110,13 +112,7 @@ function App() {
 
   return (
     <>
-      <header className='header'>
-        <div>
-          <h1 className='shopName'>blueberries</h1>
-            <input type="search" name="search" id="search" placeholder='The search is not working yet'/>
-          <button className='toBasket-btn' onClick={() => navigate("/basket")}>basket</button>
-        </div>
-      </header>
+      <Header navigate={navigate}/>
       <main ref={wrapperRef} className='wrapper'>
         <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo}} basketState={{basket, removeFrom, addTo, counts}}/>
       </main>
