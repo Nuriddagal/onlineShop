@@ -6,15 +6,15 @@ import { store } from './redux/state.ts'
  
 import './styles/index.css'
 import App from './App.tsx'
-import { BrowserRouter } from 'react-router'
+import { HashRouter } from 'react-router'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename='/'>
+      <HashRouter basename='/'>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </StrictMode>
 )
