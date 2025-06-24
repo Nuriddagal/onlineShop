@@ -95,15 +95,17 @@
     bottom: 10px;
     left: 200px;
     border-radius: var(--main-radius);
-    background-color:rgb(204, 230, 252);
+    background-color:rgb(57, 146, 224);
+    padding: 2px;
 }
 .delete_button:hover{
     cursor: pointer;
     background-color:rgb(173, 193, 211);
 }
-.delete_button img{
-    width: 25px;
-    height: 25px;
+.delete_button svg{
+    fill: white;
+    width: 20px;
+    height: 20px;
 }
 .basket-head{
     display: flex;

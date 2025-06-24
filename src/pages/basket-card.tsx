@@ -1,4 +1,5 @@
 
+import { DeleteSvg } from "../deleteSvg"
 import type { CardState } from "../Types"
 
 
@@ -14,7 +15,7 @@ export function BasketCard({product, addTo, removeFrom, deleteFrom, counts}: Car
                         />
                     </div>
                     <button type="button" className="delete_button" onClick={() => deleteFrom?.(product)}>
-                        <img src="../assets/delete.png" alt="delete" />
+                        <DeleteSvg />
                     </button>
                     <p className='card__price'>${((counts?.[product.title] || 1) * Math.round(product.price))}</p>
 
