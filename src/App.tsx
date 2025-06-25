@@ -7,7 +7,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Product } from './Types';
 
 import { useAppDispatch, type RootState } from './redux/state.ts';
-import { fetchProducts } from './redux/products.ts';
 import { addToBasket, deleteFromBasket, removeFromBasket } from './redux/basket.ts';
 
 import { AppRoute } from './AppRoute.tsx';
@@ -15,14 +14,25 @@ import { AppRoute } from './AppRoute.tsx';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router';
 import { Header } from './header.tsx';
-
+import { Filter } from './Filter.tsx';
+import { useLoadData } from './useLoadData.ts';
 
 
 function App() {
   const [load, setLoad] = useState<boolean>(false);
 
+  const category = ["beauty", "fragrances", "furniture", "groceries", "home-decoration",
+      "kitchen-accessories", "laptops", "mens-shirts", "mens-shoes", "smartphones",
+      "mens-watches","mobile-accessories","motorcycle","skin-care","sports-accessories",
+      "sunglasses","tablets","tops","vehicle","womens-bags",
+      "womens-dresses","womens-jewellery","womens-shoes",
+      "womens-watches"];
+    
   const [visibleProducts, setvisibleProducts] = useState<number>(30);
 
+  const [chosenFilter, setChosenFilter] = useState<string[]>([]);    
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
+  
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLElement>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -44,7 +54,9 @@ function App() {
   function deleteFrom(product: Product)  {
     dispatch(deleteFromBasket(product))
   }
-  
+
+  useLoadData(dispatch);
+
   const initObserver = useCallback(() => {
     if (observerRef.current) {
       observerRef.current.disconnect();
@@ -65,16 +77,7 @@ function App() {
 
     observerRef.current = observer;
   },[data?.products?.length, loading]);
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        await dispatch(fetchProducts()).unwrap()
-      } catch (err) {
-        console.error('Failed to load products:', err)
-      }
-    }
-    loadProducts()
-  }, [dispatch])
+  
   
   useEffect(() => {
     const currentRef = loadMoreRef.current;
@@ -112,12 +115,13 @@ function App() {
   } 
       
   const products = data.products;
-
+  
   return (
     <>
-      <Header navigate={navigate} counts={counts}/>
+      <Header navigate={navigate} counts={counts} setIsFilterOpen={setIsFilterOpen}/>
       <main ref={wrapperRef} className='wrapper'>
-        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo}} basketState={{basket, removeFrom, addTo, deleteFrom, counts}}/>
+        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo, chosenFilter}} basketState={{basket, removeFrom, addTo, deleteFrom, counts}} dashboard={{product:products[0], addTo}}/>
+        <Filter categorys={category} chosenFilter={chosenFilter} setChosenFilter={setChosenFilter} isFilterOpen={isFilterOpen}/>
       </main>
       {window.innerWidth <= 558 && <footer>footer</footer>}
     </>

@@ -1,5 +1,5 @@
 
-import { DeleteSvg } from "../deleteSvg"
+import { DeleteSvg } from "../svg/deleteSvg"
 import type { CardState } from "../Types"
 
 

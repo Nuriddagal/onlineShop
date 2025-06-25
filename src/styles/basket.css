@@ -1,10 +1,12 @@
 .basket{
     display: flex;
+    width: 100%;
     max-width: 1600px;
     min-height: 400px;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
     font-variant: small-caps;
 }
 .basket__container{
@@ -17,6 +19,17 @@
     background-color: white;
     padding-bottom: 20px;
     gap: 20px;
+    border-radius: var(--main-radius);
+}
+.empty-container{
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
     border-radius: var(--main-radius);
 }
 .basket__card{

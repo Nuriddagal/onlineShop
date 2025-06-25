@@ -1,6 +1,6 @@
-import { BasketSvg } from "../basketSvg";
-import { HeartSvg } from "../heartSvg";
-import { StarSvg } from "../starSvg";
+import { BasketSvg } from "../svg/basketSvg";
+import { HeartSvg } from "../svg/heartSvg";
+import { StarSvg } from "../svg/starSvg";
 import type { CardState} from "../Types";
 
 

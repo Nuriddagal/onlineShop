@@ -1,13 +1,11 @@
 import type { Dispatch, SetStateAction } from "react"
 import type { NavigateFunction } from "react-router-dom"
-
 export type Products =  {
     products: Product[]
     total: number,
     skip: number,
     limit: number
 }
-
 export type Product = {
     "id": number,
     "title": string,
@@ -36,7 +34,6 @@ export type Product = {
       "images": string[],
       "thumbnail": string
 }
-
 type ReviewInfo = {
     "rating": number,
     "comment": string,
@@ -44,27 +41,22 @@ type ReviewInfo = {
     "reviewerName": string,
     "reviewerEmail": Email
 }
-
 type Email = `${string}@${string}.com`; 
-
 type MetaInfo = {
     "createdAt": string,
     "updatedAt": string,
     "barcode": string,
     "qrCode": string
 }
-
 export type ProductsState = {
   data: Products | null,
   loading: boolean,
   error: string | null
 }
-
 export type Basket ={
   basket: Product[] | [],
   counts: Counts
 }
-
 export type CardState = {
     product: Product,
     addTo: (product: Product) => void,
@@ -73,13 +65,11 @@ export type CardState = {
     counts?: Counts
     setShowModal?: Dispatch<SetStateAction<boolean>>,
 } 
-
 export type Counts = {
    [key: string]: number,
    totalCount: number,
    totalPrice: number
 }
-
 export type BasketState = {
     basket: Product[],
     addTo: (product: Product) => void,
@@ -87,15 +77,16 @@ export type BasketState = {
     deleteFrom: (product: Product) => void,
     counts: Counts
 } 
-
 export type AppRouteProps = {
   productPage: ProductPageProps,
-  basketState: BasketState
+  basketState: BasketState,
+  dashboard: CardState
 }
 
 export type ProductPageProps = {
   visibleProducts: number,
   products: Product[],
+  chosenFilter: string[],
   loadMoreRef: React.RefObject<HTMLDivElement | null> ,
   addTo: (product: Product) => void,
 }
@@ -104,8 +95,18 @@ export type ModalProps = {
     modalRef: React.RefObject<HTMLDivElement | null>,
     setShowModal: Dispatch<SetStateAction<boolean>>
 }
-
 export type HeaderProps = {
   navigate: NavigateFunction,
-  counts: Counts
+  counts: Counts,
+  setIsFilterOpen: Dispatch<SetStateAction<boolean>>
+}
+export type CategoryProps = {
+    category: string,
+    prefix: string
+}
+export type FilterProps = { 
+  categorys: string[],
+  chosenFilter: string[],
+  isFilterOpen: boolean,
+  setChosenFilter: Dispatch<SetStateAction<string[]>>
 }

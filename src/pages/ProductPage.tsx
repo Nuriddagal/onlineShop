@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { Modal } from "../modal";
 import { UseModal } from "../useModal";
 
-export function ProductPage({visibleProducts, products, loadMoreRef, addTo}: ProductPageProps) {
+export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilter, addTo}: ProductPageProps) {
   const {setShowModal, overlayRef, modalRef, useModalEffect} = UseModal()
 
   const location = useLocation()
@@ -34,10 +34,17 @@ export function ProductPage({visibleProducts, products, loadMoreRef, addTo}: Pro
         <div className="products">
           <div className="products__wrapper">
             {/* Рендер товаров */}
-            {products.slice(0, visibleProducts).map((product) => (
+            {chosenFilter.length !== 0 && products.slice(0, visibleProducts).map((product) => {
+              if(chosenFilter.includes(product.category)){
+                return (
               <ProductCard key={product.id} product={product} addTo={addTo} setShowModal={setShowModal}/>
-            ))
+              )
+            }   
+          })
             }
+            {chosenFilter.length === 0 && products.slice(0, visibleProducts).map((product) => (
+              <ProductCard key={product.id} product={product} addTo={addTo} setShowModal={setShowModal}/>
+            ))}
           </div>
           <div ref={loadMoreRef}></div>
         </div>

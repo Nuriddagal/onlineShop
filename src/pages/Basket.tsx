@@ -22,9 +22,12 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
         
         <div className="basket">
 
-            {basket.length === 0 && (<>
-                <div className="basket-empty">There is nothing in the basket. <br /> Click the button below to return to the main page.</div>
-                <button type="button" className="to-main" onClick={() => navigate('/')}>TO MAIN PAGE</button>
+            {basket.length === 0 && (
+                <>
+                    <div className="empty-container">
+                        <div className="basket-empty">There is nothing in the basket. <br /> Click the button below to return to the main page.</div>
+                        <button type="button" className="to-main" onClick={() => navigate('/')}>TO MAIN PAGE</button>
+                    </div>
                 </>
             )}
             {basket.length !== 0 && <div className="basket__container">
@@ -45,15 +48,14 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
                 ))}
             </div>
             }
-        </div>
-         {basket.length !== 0 && (
+            {basket.length !== 0 && (
                 <div className="order">
                                 <p className="order__price"><span>Total:</span> <span>{counts.totalPrice}</span></p>
                                 <button type="button" className="order__btn" onClick={() => setShowModal(true)}>Order</button>
                                 <Modal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef}/>
                 </div>
             )}
-        
+        </div>
         </>
     )
 }
