@@ -8,7 +8,7 @@ export function ProductCard({product, addTo, setShowModal}: CardState) {
 
     return (
         <>
-            <div className="products__card" >
+            <div className="products__card" id={product.id.toString()}>
                     <div className="image-wrapper">
                         <img 
                         src={product.thumbnail} 

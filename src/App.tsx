@@ -6,16 +6,17 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Product } from './Types';
 
-import { useAppDispatch, type RootState } from './redux/state.ts';
-import { addToBasket, deleteFromBasket, removeFromBasket } from './redux/basket.ts';
+import { useAppDispatch, type RootState } from './redux/state';
+import { addToBasket, deleteFromBasket, removeFromBasket } from './redux/basket';
 
-import { AppRoute } from './AppRoute.tsx';
+import { AppRoute } from './AppRoute';
 
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router';
-import { Header } from './header.tsx';
-import { Filter } from './Filter.tsx';
-import { useLoadData } from './useLoadData.ts';
+import { Header } from './header';
+import { Filter } from './Filter';
+import { useLoadData } from './useLoadData';
+
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
       "womens-watches"];
     
   const [visibleProducts, setvisibleProducts] = useState<number>(30);
+
+  const [dashboardId, setDashboardId] = useState<string>('');
 
   const [chosenFilter, setChosenFilter] = useState<string[]>([]);    
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
@@ -120,7 +123,7 @@ function App() {
     <>
       <Header navigate={navigate} counts={counts} setIsFilterOpen={setIsFilterOpen}/>
       <main ref={wrapperRef} className='wrapper'>
-        <AppRoute productPage={{visibleProducts, products, loadMoreRef, addTo, chosenFilter}} basketState={{basket, removeFrom, addTo, deleteFrom, counts}} dashboard={{product:products[0], addTo}}/>
+        <AppRoute dashboardId={Number(dashboardId)} productPage={{visibleProducts, products, loadMoreRef, addTo, chosenFilter, setDashboardId}} basketState={{basket, removeFrom, addTo, deleteFrom, counts}} dashboard={{product:products[Number(dashboardId) - 1], addTo}}/>
         <Filter categorys={category} chosenFilter={chosenFilter} setChosenFilter={setChosenFilter} isFilterOpen={isFilterOpen}/>
       </main>
       {window.innerWidth <= 558 && <footer>footer</footer>}

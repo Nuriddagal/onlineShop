@@ -34,12 +34,15 @@ export type Product = {
       "images": string[],
       "thumbnail": string
 }
-type ReviewInfo = {
+export type ReviewInfo = {
     "rating": number,
     "comment": string,
     "date": string,
     "reviewerName": string,
     "reviewerEmail": Email
+}
+export type SvgStyle = {
+    fill?: string
 }
 type Email = `${string}@${string}.com`; 
 type MetaInfo = {
@@ -80,7 +83,8 @@ export type BasketState = {
 export type AppRouteProps = {
   productPage: ProductPageProps,
   basketState: BasketState,
-  dashboard: CardState
+  dashboard: CardState,
+  dashboardId: number,
 }
 
 export type ProductPageProps = {
@@ -89,6 +93,7 @@ export type ProductPageProps = {
   chosenFilter: string[],
   loadMoreRef: React.RefObject<HTMLDivElement | null> ,
   addTo: (product: Product) => void,
+  setDashboardId: Dispatch<SetStateAction<string>>
 }
 export type ModalProps = {
     overlayRef: React.RefObject<HTMLDivElement | null>,

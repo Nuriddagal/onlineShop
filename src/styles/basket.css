@@ -46,7 +46,7 @@
 .card__image-wrapper{
     width: 150px;
     height: 170px;
-    background-color: rgb(255, 255, 164);
+    background-color: var(--image-bg);
     border-radius: 10px;
     grid-area: image;
 }

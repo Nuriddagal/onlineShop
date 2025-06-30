@@ -1,5 +1,7 @@
 :root {
   --main-radius: 10px;
+  --image-bg: rgba(161, 255, 184, 0.822);
+  --max-width: 1400px;
 }
 
 * {
@@ -25,7 +27,7 @@ html, body, #root {
   align-items: center; 
 }
 
-.basket-button {
+.basket-button, .order-button{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +59,7 @@ html, body, #root {
 }
 .header div{
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -82,7 +84,7 @@ html, body, #root {
 }
 .products {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
@@ -107,7 +109,7 @@ html, body, #root {
   height: 250px;
   align-items: center;
   justify-content: center;
-  background-color: rgba(161, 255, 184, 0.822);
+  background-color: var(--image-bg);
   border-radius: var(--main-radius);
 }
 
@@ -138,11 +140,6 @@ html, body, #root {
   gap: 3px;
 }
 
-.products__rating svg{
-  fill: gold;
-  width: 17px;
-  height: 18px;
-}
 #search{
   width: 70%;
   height: 50%;
@@ -245,7 +242,10 @@ html, body, #root {
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-
+.starSvg{
+  width: 17px;
+  height: 18px;
+}
 .modal-overlay.active {
   opacity: 1;
   pointer-events: all;
@@ -328,3 +328,153 @@ html, body, #root {
   display: flex;
 }
 /* end Filter Styles */
+
+/* slider Styles start */
+.dashboard{
+  width: 95%;
+  max-width: var(--max-width);
+  height: 100%;
+  font-variant: small-caps;
+}
+.dashboard .to-main{
+  position: absolute;
+  top:120px;
+  left: 2vw;
+}
+.dashboard__card{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  grid-template-areas: 
+  "swiper info order"
+  "review-block review-block review-block" ;
+}
+.dashboard .dashboard__swiper{
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  user-select: none;
+  grid-area: swiper;
+  margin: 0;
+}
+.dashboard__swiper .slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: var(--main-radius);
+  background-color: var(--image-bg);
+}
+.dashboard__info{
+  grid-area: info;
+}
+.dashboard__order{
+  grid-area: order;
+}
+.dashboard__image{
+  width: 90%;
+  height: 100%;
+  object-fit: contain;
+}
+.dashboard__reviews-block{
+  width: 90%;
+  grid-area: review-block;
+}
+.reviews__wrapper{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.review{
+  width: 33%;
+  height: fit-content;
+  padding: 10px;
+  background-color: white;
+  border-radius: var(--main-radius);
+  box-shadow: -2px -2px 10px 1px gray;
+}
+.review__head{
+  display: flex;
+  justify-content: space-between;
+}
+.review__meta{
+  display: flex;
+  flex-direction: column;
+}
+.review__meta:last-child{
+  color: gray;
+}
+.dashboard__info-item{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 5px;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.dashboard__info-item span{
+  width: 50%;
+  text-align: start;
+}
+.info-item__name{
+  position: relative;
+  z-index: 2;
+  color: gray;
+  border-bottom: 1px dotted gray;
+}
+.dashboard__title{
+  font-size: 2rem;
+  margin: 10px 0 20px 0;
+}
+.dashboard__order{
+  position: sticky;
+  top:110px;
+  right: 0;
+  background-color: white;
+  width: 100%;
+  height: 30%;
+  border-radius: var(--main-radius);
+  box-shadow: -2px -2px 10px 1px gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.dashboard__price{
+  font-size: 2rem;
+  font-weight: bold;
+  color: blue;
+}
+.btn-wrapper{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.btn-wrapper button{
+  width: 80%;
+  height: 50%;
+  display: flex;
+  border-radius: var(--main-radius);
+  justify-content: center;
+}
+.dashboard__order button svg {
+  width: 40px;
+  height: 40px;
+}
+.dashboard__order button p {
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+.dashboard__basket-btn{
+  background-color: #156bdb;
+}
+.dashboard__order-btn{
+  background-color: #86b1e9;
+}
+/* slider Styles end */

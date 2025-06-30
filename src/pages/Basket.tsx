@@ -13,9 +13,13 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
 
     useModalEffect()
 
-    const handleBack = () => {
-        navigate('/', { state: { restoreScroll: true } });
-    };
+    const goBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
 
     return (
         <>
@@ -26,7 +30,7 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
                 <>
                     <div className="empty-container">
                         <div className="basket-empty">There is nothing in the basket. <br /> Click the button below to return to the main page.</div>
-                        <button type="button" className="to-main" onClick={() => navigate('/')}>TO MAIN PAGE</button>
+                        <button type="button" className="to-main" onClick={() => navigate("/")}>TO MAIN PAGE</button>
                     </div>
                 </>
             )}
@@ -38,7 +42,7 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
                                 <h3 className="basket-title">Basket</h3>
                                 <p className="basket-count">{counts.totalCount} products</p>
                             </div>
-                            <button type="button" onClick={handleBack} className="to-main-btn">{`<  `}TO MAIN</button>
+                            <button type="button" onClick={goBack} className="to-main-btn">{`<  `}GO BACK</button>
                         </div>
                     </>
                 )}
