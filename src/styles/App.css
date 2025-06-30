@@ -3,6 +3,7 @@
   --image-bg: rgba(161, 255, 184, 0.822);
   --max-width: 1400px;
 }
+
 * {
   font-size: 14px;
   margin: 0;
@@ -380,7 +381,6 @@ html, body, #root {
 }
 .dashboard__reviews-block{
   width: 90%;
-  height: fit-content;
   grid-area: review-block;
 }
 .reviews__wrapper{

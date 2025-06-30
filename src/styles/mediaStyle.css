@@ -54,10 +54,20 @@
   .btn-wrapper{
     flex-direction: row;
   }
-  /* .image-wrapper .favorite-icon{
-    width: 15px;
-    height: 15px;
-  } */
+  .btn-wrapper > button {
+    padding-top: 5px;
+  }
+  .btn-wrapper > button > p{
+    line-height: 40px;
+  }
+  .favorite-icon{
+    top: 10px;
+    right: 20px;
+  }
+  .favorite-icon > svg{
+    width: 25px;
+    height: 25px;
+  }
 }
 
 /* Мобильные устройства (до 768px) */
@@ -128,7 +138,9 @@
   }
   
   .dashboard .to-main {
-    top: 90px;
+    height: 20px;
+    padding: 0;
+    top: 80px;
     left: 15px;
   }
   .btn-wrapper {
@@ -160,6 +172,9 @@
   .filter-menu{
     top: 70px;
   }
+  .dashboard .to-main{
+    top: 40px;
+  }
   .header h1 {
     font-size: 24px;
   }
@@ -184,10 +199,6 @@
     height: 20px;
   }
   
-  .favorite-icon {
-    width: 20px;
-    height: 20px;
-  }
   
   #search {
     height: 40%;
@@ -213,6 +224,10 @@
   .info-item__name {
     border-bottom: none;
   }
+  .favorite-icon svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* Дополнительные улучшения для touch-устройств */
@@ -224,10 +239,6 @@
     fill: white;
   }
   
-  button, a {
-    min-height: 44px; /* Рекомендованный размер для touch */
-    min-width: 44px;
-  }
 }
 
 /* Улучшение читаемости на маленьких экранах */
@@ -238,5 +249,9 @@
   
   .products__wrapper {
     grid-template-columns: 1fr 1fr;
+  }
+  .filter-menu{
+    height: 100vh;
+    overflow-y: scroll;
   }
 }
