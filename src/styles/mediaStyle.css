@@ -38,6 +38,7 @@
   }
   .dashboard .reviews{
     padding: 10px;
+    height: fit-content;
   }
   .review {
     width: 80%;
@@ -138,9 +139,9 @@
   }
   
   .dashboard .to-main {
-    height: 20px;
+    height: 30px;
     padding: 0;
-    top: 80px;
+    top: 85px;
     left: 15px;
   }
   .btn-wrapper {
@@ -173,12 +174,14 @@
     top: 70px;
   }
   .dashboard .to-main{
-    top: 40px;
+    top: 75px;
   }
   .header h1 {
-    font-size: 24px;
+    font-size: 40px;
   }
-  
+  #search{
+    display: none;
+  }
   .products__wrapper {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 10px;

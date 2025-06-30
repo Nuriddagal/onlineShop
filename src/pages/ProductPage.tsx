@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router";
 import { Modal } from "../modal";
 import { UseModal } from "../useModal";
 
-export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilter, addTo, setDashboardId}: ProductPageProps) {
+export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilter, addTo}: ProductPageProps) {
   const {setShowModal, overlayRef, modalRef, useModalEffect} = UseModal()
 
   const location = useLocation()
@@ -17,6 +17,7 @@ export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilte
  const handleOnClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     const card = target.closest('.products__card');
+    
     
     // Проверяем клик по конкретным элементам
     const isBasketButton = target.closest(".basket-button") !== null;
@@ -38,8 +39,8 @@ export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilte
     }
     
     // Если клик по самой карточке 
-    setDashboardId(card.id);
-    navigate(`/dashboard&${card.id}`);
+    localStorage.setItem("dashboardProduct", JSON.stringify(products[Number(card.id) - 1]));
+    navigate(`/dashboard/${card.id}`);
 };
     useEffect(() => {
     // Восстановление при возврате
