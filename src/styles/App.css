@@ -3,7 +3,6 @@
   --image-bg: rgba(161, 255, 184, 0.822);
   --max-width: 1400px;
 }
-
 * {
   font-size: 14px;
   margin: 0;
@@ -101,6 +100,7 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  cursor: pointer;
 }
 
 .image-wrapper {
@@ -339,9 +339,10 @@ html, body, #root {
 .dashboard .to-main{
   position: absolute;
   top:120px;
-  left: 2vw;
+  left: 30px;
 }
 .dashboard__card{
+  margin-top: 50px;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: 20px;
@@ -379,6 +380,7 @@ html, body, #root {
 }
 .dashboard__reviews-block{
   width: 90%;
+  height: fit-content;
   grid-area: review-block;
 }
 .reviews__wrapper{

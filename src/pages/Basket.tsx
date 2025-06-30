@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router"
 import "../styles/basket.css"
+import "../styles/mediaBasket.css"
 
 import type { BasketState} from "../Types"
 
@@ -30,7 +31,7 @@ export function Basket({basket, addTo, removeFrom, deleteFrom, counts}: BasketSt
                 <>
                     <div className="empty-container">
                         <div className="basket-empty">There is nothing in the basket. <br /> Click the button below to return to the main page.</div>
-                        <button type="button" className="to-main" onClick={() => navigate("/")}>TO MAIN PAGE</button>
+                        <button type="button" className="to-main" onClick={goBack}>Go Back</button>
                     </div>
                 </>
             )}

@@ -1,5 +1,5 @@
 import './styles/App.css'
-
+import './styles/mediaStyle.css'
 import { useSelector } from 'react-redux';
 
 import { useCallback, useEffect, useRef, useState } from 'react';

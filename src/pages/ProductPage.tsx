@@ -14,19 +14,33 @@ export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilte
 
   const navigate = useNavigate()
 
-  const toDashboard = (e: React.MouseEvent) => {
+ const handleOnClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
-    const isBtn = target.closest("button") !== null
-    if(!isBtn){
-      const card = target.closest('.products__card')
-      if(card){
-        setDashboardId(card.id)
-        navigate(`/dashboard&${card.id}`)
-      }
-      
-     }
-  }
-  
+    const card = target.closest('.products__card');
+    
+    // Проверяем клик по конкретным элементам
+    const isBasketButton = target.closest(".basket-button") !== null;
+    const isFavoriteIcon = target.closest(".favorite-icon") !== null;
+    
+    if (!card) return; // Если клик был вне карточки
+    
+    if (isBasketButton) {
+        // Обработка клика по кнопке корзины
+        addTo(products[Number(card.id) - 1]);
+        return;
+    }
+    
+    if (isFavoriteIcon) {
+        // Обработка клика по иконке избранного
+        e.stopPropagation();
+        setShowModal(true);
+        return;
+    }
+    
+    // Если клик по самой карточке 
+    setDashboardId(card.id);
+    navigate(`/dashboard&${card.id}`);
+};
     useEffect(() => {
     // Восстановление при возврате
     if (location.state?.restoreScroll) {
@@ -47,23 +61,23 @@ export function ProductPage({visibleProducts, products, loadMoreRef, chosenFilte
     return (
         <>
         <div className="products">
-          <div className="products__wrapper" onClick={toDashboard}>
+          <div className="products__wrapper" onClick={handleOnClick}>
             {/* Рендер товаров */}
             {chosenFilter.length !== 0 && products.slice(0, visibleProducts).map((product) => {
               if(chosenFilter.includes(product.category)){
                 return (
-              <ProductCard key={product.id} product={product} addTo={addTo} setShowModal={setShowModal}/>
+              <ProductCard key={product.id} product={product} setShowModal={setShowModal}/>
               )
             }   
           })
             }
             {chosenFilter.length === 0 && products.slice(0, visibleProducts).map((product) => (
-              <ProductCard key={product.id} product={product} addTo={addTo} setShowModal={setShowModal}/>
+              <ProductCard key={product.id} product={product} setShowModal={setShowModal}/>
             ))}
           </div>
           <div ref={loadMoreRef}></div>
         </div>
-        {/* Затемняющий оверлей */}
+        
         <Modal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef}/>
         </>
     )

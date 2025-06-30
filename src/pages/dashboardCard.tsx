@@ -11,7 +11,7 @@ export function DashboardCard({product, addTo, setShowModal}: CardState) {
     const navigate = useNavigate()
 
     const handleOrder = ():void => {
-        addTo(product)
+        addTo?.(product)
         navigate("/basket")
     }
 
@@ -29,8 +29,8 @@ export function DashboardCard({product, addTo, setShowModal}: CardState) {
                     <div className="dashboard__order">
                         <p className='dashboard__price'>Price: ${product.price}</p>
                         <div className="btn-wrapper">
-                            <button className='dashboard__basket-btn' onClick={() => addTo(product)}>
-                                <p>{product.shippingInformation.replace("Ships", '')}</p><BasketSvg/>
+                            <button className='dashboard__basket-btn' onClick={() => addTo?.(product)}>
+                                <p>To Basket</p><BasketSvg/>
                             </button>
                             <button className='dashboard__order-btn' onClick={handleOrder}>
                                 <p>Order now</p><BasketSvg/>
