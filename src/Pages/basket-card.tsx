@@ -28,7 +28,7 @@ export function BasketCard({product, addTo, removeFrom, deleteFrom, counts}: Car
                     </div>
                     
                     <div className="controller">
-                        <button className='card__add-button' onClick={() => addTo(product)}>+</button>
+                        <button className='card__add-button' onClick={() => addTo?.(product)}>+</button>
                         <input type="text" value={counts?.[product.title]} className="card__product-count" readOnly/>
                         <button className="card__remove-button" onClick={() => removeFrom?.(product)}>-</button>
                     </div>       
