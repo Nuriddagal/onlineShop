@@ -3,8 +3,8 @@ import { Review } from "../review";
 import { BasketSvg } from "../svg/basketSvg";
 import { HeartSvg } from "../svg/heartSvg";
 import type { CardState} from "../Types";
-import { DashboardInfo } from './../DashboardInfo';
-import { DashboardSwiper } from './../dashboardSwiper';
+import { DashboardInfo } from '../DashboardInfo';
+import { DashboardSwiper } from '../dashboardSwiper';
 
 
 export function DashboardCard({product, addTo, setShowModal}: CardState) {

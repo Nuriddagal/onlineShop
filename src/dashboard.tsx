@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router";
-import { DashboardCard } from "./pages/dashboardCard";
+import { DashboardCard } from "./Pages/dashboardCard";
 import { useEffect, useState } from "react";
 import type { Product } from "./Types";
 import { useDispatch } from "react-redux";

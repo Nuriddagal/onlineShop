@@ -2,8 +2,8 @@ import { Routes, Route, type RouteObject} from "react-router-dom";
 
 import type { AppRouteProps } from "./Types";
 
-import { Basket } from "./pages/Basket";
-import { ProductPage } from "./pages/ProductPage";
+import { Basket } from "./Pages/Basket";
+import { ProductPage } from "./Pages/ProductPage";
 import { Dashboard } from "./dashboard";
 
 export function AppRoute({productPage, basketState}: AppRouteProps) {
