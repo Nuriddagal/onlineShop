@@ -93,4 +93,4 @@ const basketSlice = createSlice({
 //   };
 
 export const {addToBasket, removeFromBasket, deleteFromBasket} = basketSlice.actions
-export default basketSlice.reducer
+export const basketReducer = basketSlice.reducer

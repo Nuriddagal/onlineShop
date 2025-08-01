@@ -1,16 +1,18 @@
 // src/hooks/useAppLogic.ts
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
-import { useInfiniteScroll } from './useInfiniteScroll';
-import { useLoadData } from '../useLoadData';
-import { addToBasket, deleteFromBasket, removeFromBasket } from '../redux/basket';
-import type { Product } from '../Types';
-import type { RootState } from '../redux/state';
+
+import { useLoadData } from './UseLoadData';
+
+import { useInfiniteScroll } from './useInfinityScroll';
+
+import type { Product } from '../../Types';
+import { addToBasket, deleteFromBasket, removeFromBasket } from '@/Pages/basket/model/basket';
+import type { RootState } from '../model/state';
 
 export function useAppLogic() {
   const [visibleProducts, setVisibleProducts] = useState(30);
-  const [chosenFilter, setChosenFilter] = useState<string[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const wrapperRef = useRef<HTMLElement>(null);
 
@@ -22,7 +24,7 @@ export function useAppLogic() {
   const { basket, counts } = useSelector((state: RootState) => state.basket);
 
   const loadMore = () => {
-    setVisibleProducts(prev => Math.min(prev + 30, data?.products?.length || 0));
+    setVisibleProducts((prev) => Math.min(prev + 30, data?.products?.length || 0));
   };
 
   const { loadMoreRef } = useInfiniteScroll(loadMore, loading);
@@ -30,10 +32,10 @@ export function useAppLogic() {
   useLoadData(dispatch);
 
   useEffect(() => {
-    if (location.pathname === "/basket") {
-      wrapperRef.current?.classList.add("basket-wrapper");
+    if (location.pathname === '/basket') {
+      wrapperRef.current?.classList.add('basket-wrapper');
     } else {
-      wrapperRef.current?.classList.remove("basket-wrapper");
+      wrapperRef.current?.classList.remove('basket-wrapper');
     }
   }, [location]);
 
@@ -44,9 +46,7 @@ export function useAppLogic() {
   return {
     wrapperRef,
     visibleProducts,
-    chosenFilter,
     isFilterOpen,
-    setChosenFilter,
     setIsFilterOpen,
     navigate,
     basket,

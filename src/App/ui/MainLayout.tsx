@@ -1,7 +1,11 @@
 // src/components/MainLayout.tsx
-import { Header } from '../header';
-import { Filter } from '../Filter';
-import { AppRoute } from '../AppRoute';
+
+import type { Dispatch, SetStateAction } from 'react';
+import { Filter } from '../../Features/productFilter/ui/Filter';
+import { Header } from '../../header';
+import { AppRoute } from '../providers/AppRoute';
+import { useSelector } from 'react-redux';
+import { selectChosenFilter } from '../../Features/productFilter/model/selectors';
 
 interface Props {
   navigate: any;
@@ -9,23 +13,22 @@ interface Props {
   wrapperRef: React.RefObject<HTMLElement | null>;
   visibleProducts: number;
   products: any[];
-  loadMoreRef: React.RefObject<HTMLDivElement>;
+  loadMoreRef: React.RefObject<HTMLDivElement | null>;
   addTo: (p: any) => void;
-  chosenFilter: string[];
   basket: any;
   removeFrom: (p: any) => void;
   deleteFrom: (p: any) => void;
-  setIsFilterOpen: (v: boolean) => void;
-  setChosenFilter: (v: string[]) => void;
+  setIsFilterOpen: Dispatch<SetStateAction<boolean>>
   isFilterOpen: boolean;
   categories: string[];
 }
 
 export function MainLayout({
   navigate, counts, wrapperRef, visibleProducts, products, loadMoreRef,
-  addTo, chosenFilter, basket, removeFrom, deleteFrom,
-  setIsFilterOpen, setChosenFilter, isFilterOpen, categories
+  addTo,  basket, removeFrom, deleteFrom,
+  setIsFilterOpen, isFilterOpen, categories
 }: Props) {
+  const chosenFilter: string[] = useSelector(selectChosenFilter)
   return (
     <>
       <Header navigate={navigate} counts={counts} setIsFilterOpen={setIsFilterOpen} />
@@ -34,7 +37,7 @@ export function MainLayout({
           productPage={{ visibleProducts, products, loadMoreRef, addTo, chosenFilter }}
           basketState={{ basket, removeFrom, addTo, deleteFrom, counts }}
         />
-        <Filter categorys={categories} chosenFilter={chosenFilter} setChosenFilter={setChosenFilter} isFilterOpen={isFilterOpen} />
+        <Filter categorys={categories} isFilterOpen={isFilterOpen} />
       </main>
       {window.innerWidth <= 558 && <footer>footer</footer>}
     </>

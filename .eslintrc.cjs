@@ -1,0 +1,1 @@
+module.exports = require('/Users/NuridComp/.dev-config/.eslintrc.cjs');

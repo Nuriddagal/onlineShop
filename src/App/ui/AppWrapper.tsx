@@ -1,5 +1,6 @@
 // src/components/AppWrapper.tsx
-import { useAppLogic } from '../hooks/useAppLogic';
+
+import { useAppLogic } from '../hooks/useApplogic';
 import { MainLayout } from './MainLayout';
 import { ProductEmptyState } from './ProductEmptyState';
 
@@ -12,8 +13,7 @@ const categories = ["beauty", "fragrances", "furniture", "groceries", "home-deco
 
 export function AppWrapper() {
   const {
-    wrapperRef, visibleProducts, chosenFilter, isFilterOpen,
-    setChosenFilter, setIsFilterOpen,
+    wrapperRef, visibleProducts, isFilterOpen, setIsFilterOpen,
     navigate, basket, counts,
     data, loading, error, loadMoreRef,
     addTo, removeFrom, deleteFrom
@@ -32,12 +32,10 @@ export function AppWrapper() {
       products={data.products}
       loadMoreRef={loadMoreRef}
       addTo={addTo}
-      chosenFilter={chosenFilter}
       basket={basket}
       removeFrom={removeFrom}
       deleteFrom={deleteFrom}
       setIsFilterOpen={setIsFilterOpen}
-      setChosenFilter={setChosenFilter}
       isFilterOpen={isFilterOpen}
       categories={categories}
     />
