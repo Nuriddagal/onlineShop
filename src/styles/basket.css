@@ -1,4 +1,4 @@
-.basket{
+.basket {
     display: flex;
     width: 100%;
     max-width: 1600px;
@@ -9,7 +9,7 @@
     gap: 20px;
     font-variant: small-caps;
 }
-.basket__container{
+.basket__container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     gap: 20px;
     border-radius: var(--main-radius);
 }
-.empty-container{
+.empty-container {
     width: 100%;
     max-width: 1200px;
     display: flex;
@@ -32,67 +32,70 @@
     background-color: white;
     border-radius: var(--main-radius);
 }
-.basket__card{
+.basket__card {
     position: relative;
     display: grid;
     width: 90%;
     height: 180px;
     grid-auto-flow: column;
     grid-template-columns: 1fr 2fr 1fr 1fr;
-    grid-template-areas: 
-    "image info ctrl price";
+    grid-template-areas: 'image info ctrl price';
     gap: 10px;
 }
-.card__image-wrapper{
+.card__image-wrapper {
     width: 150px;
     height: 170px;
     background-color: var(--image-bg);
     border-radius: 10px;
     grid-area: image;
 }
-.card__image{
+.card__image {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.card__price{
+.card__price {
     font-size: 25px;
     color: blueviolet;
     text-align: center;
     grid-area: price;
 }
-.card__info{
+.card__info {
     grid-area: info;
 }
-.wrap{
+.wrap {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 50%;
     margin-top: 10px;
 }
-.card__minimumOrderQuantity, .card__shippingInfo{
+.card__minimumOrderQuantity,
+.card__shippingInfo {
     color: gray;
 }
-.controller{
+.controller {
     grid-area: ctrl;
 }
-.card__add-button, .card__product-count, .card__remove-button{
+.card__add-button,
+.card__product-count,
+.card__remove-button {
     width: 30px;
     height: 30px;
     margin: 0 5px;
     border-radius: var(--main-radius);
     font-size: 20px;
 }
-.card__add-button:hover, .card__remove-button:hover{
+.card__add-button:hover,
+.card__remove-button:hover {
     cursor: pointer;
 }
-.card__product-count{
+.card__product-count {
     pointer-events: none;
     text-align: center;
 }
-.to-main-btn{
+.to-main-btn {
     width: fit-content;
     height: fit-content;
     padding: 1%;
@@ -103,54 +106,54 @@
     border-radius: var(--main-radius);
     border: none;
 }
-.delete_button{
+.delete_button {
     position: absolute;
     bottom: 10px;
     left: 200px;
     border-radius: var(--main-radius);
-    background-color:rgb(57, 146, 224);
+    background-color: rgb(57, 146, 224);
     padding: 2px;
 }
-.delete_button:hover{
+.delete_button:hover {
     cursor: pointer;
-    background-color:rgb(173, 193, 211);
+    background-color: rgb(173, 193, 211);
 }
-.delete_button svg{
+.delete_button svg {
     fill: white;
     width: 20px;
     height: 20px;
 }
-.basket-head{
+.basket-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 80px;
 }
-.basket-title{
+.basket-title {
     font-size: 30px;
     line-height: 60px;
     padding: 0 0 0 60px;
 }
-.basket-count{
+.basket-count {
     color: gray;
     font-size: 16px;
     line-height: 0;
     padding-left: 70px;
     font-weight: bold;
 }
-.basket-empty{
+.basket-empty {
     text-align: center;
     font-size: large;
 }
-.to-main{
+.to-main {
     width: 120px;
     height: 40px;
     color: white;
     border-radius: var(--main-radius);
     background-color: #397dd6;
 }
-.order{
+.order {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -160,16 +163,16 @@
     background: white;
     border-radius: var(--main-radius);
 }
-.order__price{
+.order__price {
     width: 100%;
     display: flex;
     justify-content: space-around;
     font-size: 40px;
 }
-.order__price span{
+.order__price span {
     font-size: 40px;
 }
-.order__btn{
+.order__btn {
     width: 70%;
     height: 40px;
     font-size: 30px;

@@ -1,78 +1,78 @@
 /* Filter.module.css */
 
 .filterMenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 280px;
-  background-color: #ffffff;
-  padding: 1.5rem 1rem;
-  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  overflow-y: auto;
-  border-right: 1px solid #e2e2e2;
-  user-select: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background-color: #ffffff;
+    padding: 1.5rem 1rem;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    border-right: 1px solid #e2e2e2;
+    user-select: none;
 }
 
 /* Модификатор при открытии */
 .open {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 /* Мобильная адаптация */
 @media (max-width: 768px) {
-  .filterMenu {
-    width: 100%;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    transform: translateY(100%);
-    transition: transform 0.3s ease-in-out;
-  }
+    .filterMenu {
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-in-out;
+    }
 
-  .open {
-    transform: translateY(0);
-  }
+    .open {
+        transform: translateY(0);
+    }
 }
 
 fieldset {
-  border: none;
-  padding: 0;
-  margin: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 legend {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
 }
 
 .categoryGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 }
 
 .categoryItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  color: #444;
-  cursor: pointer;
-  transition: color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
 }
 
 .categoryItem:hover {
-  color: #111;
+    color: #111;
 }
 
-input[type="checkbox"] {
-  accent-color: #111;
-  transform: scale(1.1);
-  cursor: pointer;
+input[type='checkbox'] {
+    accent-color: #111;
+    transform: scale(1.1);
+    cursor: pointer;
 }

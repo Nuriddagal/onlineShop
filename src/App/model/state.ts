@@ -6,36 +6,36 @@ import productReducer from '@/Pages/product/model/products';
 import filterReducer from '@/Features/productFilter/model/productFilterSlice';
 
 const loadState = (): Basket => {
-  try {
-    const serializedState = localStorage.getItem('basket');
-    if (serializedState === null) {
-      return initialBasketState;
+    try {
+        const serializedState = localStorage.getItem('basket');
+        if (serializedState === null) {
+            return initialBasketState;
+        }
+        return JSON.parse(serializedState);
+    } catch (e) {
+        console.warn('Failed to load state from localStorage', e);
+        return initialBasketState;
     }
-    return JSON.parse(serializedState);
-  } catch (e) {
-    console.warn('Failed to load state from localStorage', e);
-    return initialBasketState;
-  }
 };
 
 export const store = configureStore({
-  reducer: {
-    products: productReducer,
-    basket: basketReducer,
-    filter: filterReducer,
-  },
-  preloadedState: {
-    basket: loadState(),
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        // Игнорируем несериализуемые значения (если есть)
-        ignoredActions: ['some/non-serializable-action'],
-        ignoredPaths: ['some.non.serializable.path'],
-      },
-    }).concat(basketMiddleware),
-  devTools: true,
+    reducer: {
+        products: productReducer,
+        basket: basketReducer,
+        filter: filterReducer,
+    },
+    preloadedState: {
+        basket: loadState(),
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                // Игнорируем несериализуемые значения (если есть)
+                ignoredActions: ['some/non-serializable-action'],
+                ignoredPaths: ['some.non.serializable.path'],
+            },
+        }).concat(basketMiddleware),
+    devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
