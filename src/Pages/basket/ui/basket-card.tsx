@@ -1,6 +1,7 @@
 import { BasketItemBtn } from '@/entities/basket/ui/basketItemBtn';
-import { DeleteSvg } from '../svg/deleteSvg';
+import { DeleteSvg } from '../../../svg/deleteSvg';
 import type { Counts, Product } from '@/Types';
+import styles from './basketCard.module.css';
 
 type BasketCardState = {
     product: Product;
@@ -13,48 +14,48 @@ type BasketCardState = {
 export function BasketCard({ product, addTo, removeFrom, deleteFrom, counts }: BasketCardState) {
     return (
         <>
-            <div className="basket__card card">
-                <div className="card__image-wrapper">
-                    <img src={product.thumbnail} alt={product.title} className="card__image" />
+            <div className={styles.card}>
+                <div className={styles.imageWrap}>
+                    <img src={product.thumbnail} alt={product.title} className={styles.image} />
                 </div>
+
                 <button
                     type="button"
-                    className="delete_button"
+                    className={styles.delete}
                     onClick={() => deleteFrom?.(product)}
                 >
                     <DeleteSvg />
                 </button>
-                <p className="card__price">
+
+                <p className={styles.price}>
                     ${(counts?.[product.title] || 1) * Math.round(product.price)}
                 </p>
 
-                <div className="card__info">
-                    <div className="wrap">
-                        <p className="card__title">
+                <div className={styles.info}>
+                    <div className={styles.infoWrap}>
+                        <p className={styles.title}>
                             {product.title} - {product.brand}
                         </p>
-                        <p className="card__minimumOrderQuantity">
-                            {product.minimumOrderQuantity} pcs
-                        </p>
-                        <p className="card__shippingInfo">{product.shippingInformation}</p>
+                        <p className={styles.meta}>{product.minimumOrderQuantity} pcs</p>
+                        <p className={styles.shipping}>{product.shippingInformation}</p>
                     </div>
                 </div>
 
-                <div className="controller">
+                <div className={styles.controls}>
                     <BasketItemBtn
                         children="+"
-                        className="card__add-button"
+                        className={styles.btnAdd}
                         onClick={() => addTo(product)}
                     />
                     <input
                         type="text"
                         value={counts?.[product.title]}
-                        className="card__product-count"
+                        className={styles.btnCount}
                         readOnly
                     />
                     <BasketItemBtn
                         children="-"
-                        className="card__add-button"
+                        className={styles.btnAdd}
                         onClick={() => removeFrom(product)}
                     />
                 </div>

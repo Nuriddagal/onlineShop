@@ -1,0 +1,11 @@
+.basketBg {
+    background-color: #e9eaee;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 100px;
+    padding: 20px 0;
+}

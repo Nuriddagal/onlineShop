@@ -7,34 +7,32 @@ export function UseModal() {
     const scrollPosition = useRef<number>(0);
     const overlayRef = useRef<HTMLDivElement>(null);
 
-    const useModalEffect: () => void = () => {
-        useEffect(() => {
-            const b = document.body;
+    useEffect(() => {
+        const b = document.body;
 
-            if (showModal) {
-                // Сохраняем позицию скролла
-                scrollPosition.current = window.scrollY;
-                // Блокируем скролл
-                b.style.overflowY = 'scroll';
-                b.style.position = 'fixed';
-                b.style.top = `-${scrollPosition.current}px`;
-                b.style.width = '100%';
+        if (showModal) {
+            // Сохраняем позицию скролла
+            scrollPosition.current = window.scrollY;
+            // Блокируем скролл
+            b.style.overflowY = 'scroll';
+            b.style.position = 'fixed';
+            b.style.top = `-${scrollPosition.current}px`;
+            b.style.width = '100%';
 
-                overlayRef.current?.classList.add('active');
-                modalRef.current?.classList.add('open');
-            } else {
-                // Разблокируем скролл и восстанавливаем позицию
-                b.style.overflow = '';
-                b.style.position = '';
-                b.style.top = '';
-                b.style.width = '';
-                window.scrollTo(0, scrollPosition.current);
+            overlayRef.current?.classList.add('active');
+            modalRef.current?.classList.add('open');
+        } else {
+            // Разблокируем скролл и восстанавливаем позицию
+            b.style.overflow = '';
+            b.style.position = '';
+            b.style.top = '';
+            b.style.width = '';
+            window.scrollTo(0, scrollPosition.current);
 
-                overlayRef.current?.classList.remove('active');
-                modalRef.current?.classList.remove('open');
-            }
-        }, [showModal]);
-    };
+            overlayRef.current?.classList.remove('active');
+            modalRef.current?.classList.remove('open');
+        }
+    }, [showModal]);
 
-    return { showModal, setShowModal, modalRef, overlayRef, useModalEffect };
+    return { showModal, setShowModal, modalRef, overlayRef };
 }

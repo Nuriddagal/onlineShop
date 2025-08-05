@@ -15,7 +15,7 @@ const productFilterSlice = createSlice({
         toggleFilter(state, action: PayloadAction<string>) {
             const value = action.payload;
             if (state.chosenFilter.includes(value)) {
-                state.chosenFilter = state.chosenFilter.filter((item) => item !== value);
+                state.chosenFilter = state.chosenFilter.filter(item => item !== value);
             } else {
                 state.chosenFilter.push(value);
             }

@@ -6,8 +6,8 @@ export function useProductFilter(initialFilters: string[] = []) {
     const isSelected = (value: string) => chosenFilter.includes(value);
 
     const toggleFilter = (value: string) => {
-        setChosenFilter((prev) =>
-            prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value],
+        setChosenFilter(prev =>
+            prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
         );
     };
 

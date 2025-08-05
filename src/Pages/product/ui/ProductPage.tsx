@@ -12,11 +12,11 @@ export function ProductPage({
     chosenFilter,
     addTo,
 }: ProductPageProps) {
-    const { setShowModal, overlayRef, modalRef, useModalEffect } = UseModal();
+    const { setShowModal, overlayRef, modalRef } = UseModal();
 
     const location = useLocation();
 
-    useModalEffect();
+    UseModal();
 
     const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ export function ProductPage({
                 <div className="products__wrapper" onClick={handleOnClick}>
                     {/* Рендер товаров */}
                     {chosenFilter.length !== 0 &&
-                        products.slice(0, visibleProducts).map((product) => {
+                        products.slice(0, visibleProducts).map(product => {
                             if (chosenFilter.includes(product.category)) {
                                 return (
                                     <ProductCard
@@ -84,7 +84,7 @@ export function ProductPage({
                     {chosenFilter.length === 0 &&
                         products
                             .slice(0, visibleProducts)
-                            .map((product) => (
+                            .map(product => (
                                 <ProductCard
                                     key={product.id}
                                     product={product}

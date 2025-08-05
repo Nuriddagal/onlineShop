@@ -33,7 +33,6 @@ const categories = [
 
 export function AppWrapper() {
     const {
-        wrapperRef,
         visibleProducts,
         isFilterOpen,
         setIsFilterOpen,
@@ -57,7 +56,6 @@ export function AppWrapper() {
         <MainLayout
             navigate={navigate}
             counts={counts}
-            wrapperRef={wrapperRef}
             visibleProducts={visibleProducts}
             products={data.products}
             loadMoreRef={loadMoreRef}

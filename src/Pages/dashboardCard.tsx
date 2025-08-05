@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router';
 import { Review } from '../entities/review/ui/review';
-import { BasketSvg } from '../svg/basketSvg';
 import { HeartSvg } from '../svg/heartSvg';
 import type { CardState } from '../Types';
 import { DashboardInfo } from '../entities/dashboard/ui/DashboardInfo';
-import { DashboardSwiper } from '../dashboardSwiper';
+import { ShoppingCart } from '@mui/icons-material';
+import { DashboardSwiper } from '@/Features/dashboard/ui/dashboardSwiper';
 
 export function DashboardCard({ product, addTo, setShowModal }: CardState) {
     const navigate = useNavigate();
@@ -32,11 +32,11 @@ export function DashboardCard({ product, addTo, setShowModal }: CardState) {
                     <div className="btn-wrapper">
                         <button className="dashboard__basket-btn" onClick={() => addTo?.(product)}>
                             <p>To Basket</p>
-                            <BasketSvg />
+                            <ShoppingCart sx={{ color: 'white' }} />
                         </button>
                         <button className="dashboard__order-btn" onClick={handleOrder}>
                             <p>Order now</p>
-                            <BasketSvg />
+                            <ShoppingCart sx={{ color: 'white' }} />
                         </button>
                     </div>
                 </div>

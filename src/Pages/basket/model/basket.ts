@@ -33,7 +33,7 @@ const basketSlice = createSlice({
                 state.counts.totalPrice -= Math.round(action.payload.price);
             } else {
                 const removeId: number = state.basket.findIndex(
-                    (item) => item.id === action.payload.id,
+                    item => item.id === action.payload.id
                 );
                 state.basket.splice(removeId, 1);
                 state.counts.totalCount -= state.counts[action.payload.title];
@@ -43,9 +43,7 @@ const basketSlice = createSlice({
             }
         },
         deleteFromBasket(state, action: PayloadAction<Product>) {
-            const removeId: number = state.basket.findIndex(
-                (item) => item.id === action.payload.id,
-            );
+            const removeId: number = state.basket.findIndex(item => item.id === action.payload.id);
             state.basket.splice(removeId, 1);
             state.counts.totalCount -= state.counts[action.payload.title];
             state.counts.totalPrice -=
@@ -55,28 +53,27 @@ const basketSlice = createSlice({
     },
 });
 
-export const basketMiddleware: Middleware<object, { basket: Basket }> =
-    (store) => (next) => (action) => {
-        // 1. Получаем текущее состояние ДО обработки действия
-        const preActionState = store.getState().basket;
+export const basketMiddleware: Middleware<object, { basket: Basket }> = store => next => action => {
+    // 1. Получаем текущее состояние ДО обработки действия
+    const preActionState = store.getState().basket;
 
-        // 2. Пропускаем действие через редюсеры
-        const result = next(action);
+    // 2. Пропускаем действие через редюсеры
+    const result = next(action);
 
-        // 3. Получаем новое состояние ПОСЛЕ обработки действия
-        const postActionState = store.getState().basket;
+    // 3. Получаем новое состояние ПОСЛЕ обработки действия
+    const postActionState = store.getState().basket;
 
-        // 4. Сохраняем ТОЛЬКО если состояние действительно изменилось
-        if (preActionState !== postActionState) {
-            try {
-                localStorage.setItem('basket', JSON.stringify(postActionState));
-            } catch (e) {
-                console.error('Failed to save basket', e);
-            }
+    // 4. Сохраняем ТОЛЬКО если состояние действительно изменилось
+    if (preActionState !== postActionState) {
+        try {
+            localStorage.setItem('basket', JSON.stringify(postActionState));
+        } catch (e) {
+            console.error('Failed to save basket', e);
         }
+    }
 
-        return result;
-    };
+    return result;
+};
 
 export const { addToBasket, removeFromBasket, deleteFromBasket } = basketSlice.actions;
 export const basketReducer = basketSlice.reducer;

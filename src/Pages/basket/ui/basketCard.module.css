@@ -1,0 +1,246 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1000px;
+    background-color: white;
+    padding-bottom: 20px;
+    gap: 20px;
+    border-radius: var(--main-radius);
+}
+
+.card {
+    position: relative;
+    display: grid;
+    width: 90%;
+    height: 180px;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    grid-template-areas: 'image info ctrl price';
+    gap: 10px;
+}
+
+.imageWrap {
+    width: 150px;
+    height: 170px;
+    background-color: var(--image-bg);
+    border-radius: 10px;
+    grid-area: image;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.price {
+    font-size: 25px;
+    color: blueviolet;
+    text-align: center;
+    grid-area: price;
+}
+
+.info {
+    grid-area: info;
+}
+
+.infoWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%;
+    margin-top: 10px;
+}
+
+.meta,
+.shipping {
+    color: gray;
+}
+
+.controls {
+    grid-area: ctrl;
+}
+
+.btnAdd,
+.btnCount,
+.btnRemove {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: var(--main-radius);
+    font-size: 20px;
+}
+
+.btnAdd:hover,
+.btnRemove:hover {
+    cursor: pointer;
+}
+
+.btnCount {
+    pointer-events: none;
+    text-align: center;
+}
+
+.delete {
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    border-radius: var(--main-radius);
+    background-color: rgb(57, 146, 224);
+    padding: 2px;
+}
+
+.delete:hover {
+    cursor: pointer;
+    background-color: rgb(173, 193, 211);
+}
+
+.delete svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+
+/* media css */
+/* Tablet */
+@media (max-width: 1024px) {
+    .card {
+        height: 160px;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            'image info ctrl'
+            'image info price';
+    }
+
+    .imageWrap {
+        width: 130px;
+        height: 150px;
+    }
+
+    .price {
+        text-align: left;
+        padding-left: 10px;
+        font-size: 22px;
+    }
+
+    .delete {
+        left: 180px;
+        bottom: 5px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .card {
+        height: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            'image info'
+            'ctrl price';
+        padding: 10px 0;
+    }
+
+    .imageWrap {
+        width: 100%;
+        height: 120px;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .price {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .delete {
+        position: static;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .card {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'image'
+            'info'
+            'ctrl'
+            'price';
+        gap: 5px;
+    }
+
+    .imageWrap {
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .info {
+        text-align: center;
+    }
+
+    .infoWrap {
+        margin-top: 5px;
+        gap: 5px;
+    }
+
+    .btnAdd,
+    .btnCount,
+    .btnRemove {
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .card {
+        grid-template-columns: 120px 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            'image info'
+            'image ctrl'
+            'image price';
+    }
+
+    .imageWrap {
+        height: 100px;
+    }
+
+    .controls {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+
+    .price {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) {
+    .btnAdd,
+    .btnRemove,
+    .delete,
+    .orderBtn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}

@@ -27,7 +27,7 @@ export const store = configureStore({
     preloadedState: {
         basket: loadState(),
     },
-    middleware: (getDefaultMiddleware) =>
+    middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: {
                 // Игнорируем несериализуемые значения (если есть)

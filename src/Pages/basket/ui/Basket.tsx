@@ -1,16 +1,14 @@
 import { useNavigate } from 'react-router';
-import '@/styles/basket.css';
-import '@/styles/mediaBasket.css';
 import type { BasketState } from '@/Types';
 import { UseModal } from '@/Features/modal/model/useModal';
-import { BasketCard } from '@/Pages/basket-card';
+import { BasketCard } from './basket-card';
 import { Modal } from '@/Features/modal/ui/modal';
-
+import styles from './Basket.module.css';
 export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: BasketState) {
-    const { setShowModal, overlayRef, modalRef, useModalEffect } = UseModal();
+    const { setShowModal, overlayRef, modalRef } = UseModal();
     const navigate = useNavigate();
 
-    useModalEffect();
+    UseModal();
 
     const goBack = () => {
         if (window.history.state && window.history.state.idx > 0) {
@@ -22,33 +20,33 @@ export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: Basket
 
     return (
         <>
-            <div className="basket">
+            <div className={styles.basket}>
                 {basket.length === 0 && (
                     <>
-                        <div className="empty-container">
-                            <div className="basket-empty">
+                        <div className={styles.emptyContainer}>
+                            <div className={styles.empty}>
                                 There is nothing in the basket. <br /> Click the button below to
                                 return to the main page.
                             </div>
-                            <button type="button" className="to-main" onClick={goBack}>
+                            <button type="button" className={styles.toMain} onClick={goBack}>
                                 Go Back
                             </button>
                         </div>
                     </>
                 )}
                 {basket.length !== 0 && (
-                    <div className="basket__container">
-                        <div className="basket-head">
+                    <div className={styles.container}>
+                        <div className={styles.head}>
                             <div>
-                                <h3 className="basket-title">Basket</h3>
-                                <p className="basket-count">{counts.totalCount} products</p>
+                                <h3 className={styles.title}>Basket</h3>
+                                <p className={styles.count}>{counts.totalCount} products</p>
                             </div>
-                            <button type="button" onClick={goBack} className="to-main-btn">
+                            <button type="button" onClick={goBack} className={styles.toMainBtn}>
                                 {`<  `}GO BACK
                             </button>
                         </div>
 
-                        {basket.map((product) => (
+                        {basket.map(product => (
                             <BasketCard
                                 key={product.id}
                                 counts={counts}
@@ -61,13 +59,14 @@ export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: Basket
                     </div>
                 )}
                 {basket.length !== 0 && (
-                    <div className="order">
-                        <p className="order__price">
-                            <span>Total:</span> <span>{counts.totalPrice}</span>
+                    <div className={styles.order}>
+                        <p className={styles.price}>
+                            <span className={styles.priceSpan}>Total:</span>{' '}
+                            <span className={styles.priceSpan}>{counts.totalPrice}</span>
                         </p>
                         <button
                             type="button"
-                            className="order__btn"
+                            className={styles.orderBtn}
                             onClick={() => setShowModal(true)}
                         >
                             Order

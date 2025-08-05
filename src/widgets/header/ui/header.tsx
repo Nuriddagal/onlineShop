@@ -1,10 +1,9 @@
 import { useLocation } from 'react-router';
-import { FilterSvg } from '../../../svg/filterSvg';
 import type { HeaderProps } from '../../../Types';
 import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { SearchFC } from '@/Features/search/ui/search';
-import { ShoppingCart } from '@mui/icons-material';
+import { FilterListAlt, ShoppingCart } from '@mui/icons-material';
 export function Header({ navigate, counts, setIsFilterOpen }: HeaderProps) {
     const location = useLocation();
     const [isBasket, setIsBasket] = useState<boolean>(false);
@@ -50,9 +49,9 @@ export function Header({ navigate, counts, setIsFilterOpen }: HeaderProps) {
                         <button
                             type="button"
                             className="filter"
-                            onClick={() => setIsFilterOpen((prevState) => !prevState)}
+                            onClick={() => setIsFilterOpen(prevState => !prevState)}
                         >
-                            <FilterSvg />
+                            <FilterListAlt sx={{ width: '40px', height: '40px' }}></FilterListAlt>
                         </button>
                     )}
                 </div>

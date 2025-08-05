@@ -1,7 +1,7 @@
-import { BasketSvg } from '../svg/basketSvg';
 import { HeartSvg } from '../svg/heartSvg';
 import { StarSvg } from '../svg/starSvg';
 import type { CardState } from '../Types';
+import { ShoppingCart } from '@mui/icons-material';
 
 export function ProductCard({ product }: CardState) {
     return (
@@ -21,7 +21,7 @@ export function ProductCard({ product }: CardState) {
                 </p>
                 <button className="basket-button">
                     <p>{product.shippingInformation.replace('Ships', '')}</p>
-                    <BasketSvg />
+                    <ShoppingCart />
                 </button>
             </div>
         </>

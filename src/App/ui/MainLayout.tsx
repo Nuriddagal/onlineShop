@@ -8,11 +8,12 @@ import { useSelector } from 'react-redux';
 import { selectChosenFilter } from '@/Features/productFilter/model/selectors';
 import type { Counts, Product } from '@/Types';
 import type { NavigateFunction } from 'react-router';
+import styles from '../styles/app.module.css';
+import { useLocation } from 'react-router';
 
 interface Props {
     navigate: NavigateFunction;
     counts: Counts;
-    wrapperRef: React.RefObject<HTMLElement | null>;
     visibleProducts: number;
     products: Product[];
     loadMoreRef: React.RefObject<HTMLDivElement | null>;
@@ -28,7 +29,6 @@ interface Props {
 export function MainLayout({
     navigate,
     counts,
-    wrapperRef,
     visibleProducts,
     products,
     loadMoreRef,
@@ -41,10 +41,15 @@ export function MainLayout({
     categories,
 }: Props) {
     const chosenFilter: string[] = useSelector(selectChosenFilter);
+    const location = useLocation();
     return (
         <>
             <Header navigate={navigate} counts={counts} setIsFilterOpen={setIsFilterOpen} />
-            <main ref={wrapperRef} className="wrapper">
+            <main
+                className={`${styles.wrapper} ${
+                    location.pathname === '/basket' ? styles.basketBg : ''
+                }`}
+            >
                 <AppRoute
                     productPage={{ visibleProducts, products, loadMoreRef, addTo, chosenFilter }}
                     basketState={{ basket, removeFrom, addTo, deleteFrom, counts }}
