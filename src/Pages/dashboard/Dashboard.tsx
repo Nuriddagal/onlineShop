@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router';
 import { DashboardCard } from '@/pages/dashboard/components/dashboardCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FC } from 'react';
 import type { Product } from '@/Types';
 import { useDispatch } from 'react-redux';
 import { addToBasket } from '@/pages/basket/model/basket';
 import styles from './Dashboard.module.css';
 
-export function Dashboard() {
+export const Dashboard: FC = () => {
     const { dashboardId } = useParams();
 
     const [product, setProduct] = useState<Product | null>(null);
@@ -60,4 +60,4 @@ export function Dashboard() {
             <DashboardCard product={product} addTo={addTo} />
         </div>
     );
-}
+};

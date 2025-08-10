@@ -1,6 +1,7 @@
-import { useAppLogic } from '@/App/hooks/useApplogic';
-import { MainLayout } from '@/App/components/MainLayout';
-import { ProductEmptyState } from '@/App/components/ProductEmptyState';
+import { useAppLogic } from '@/app/hooks/useApplogic';
+import { MainLayout } from '@/app/components/MainLayout';
+import { ProductEmptyState } from '@/app/components/ProductEmptyState';
+import type { FC } from 'react';
 
 const categories = [
     'beauty',
@@ -29,7 +30,7 @@ const categories = [
     'womens-watches',
 ];
 
-export function AppWrapper() {
+export const AppWrapper: FC = () => {
     const {
         visibleProducts,
         isFilterOpen,
@@ -66,4 +67,4 @@ export function AppWrapper() {
             categories={categories}
         />
     );
-}
+};

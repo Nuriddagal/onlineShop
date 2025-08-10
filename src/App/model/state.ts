@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { Basket } from '../../Types';
-import { basketMiddleware, basketReducer, initialBasketState } from '@/pages/basket/model/basket';
+import {
+    basketMiddleware,
+    basketReducer,
+    initialBasketState,
+} from '../../pages/basket/model/basket';
 import { useDispatch } from 'react-redux';
-import productReducer from '@/pages/product/model/products';
-import filterReducer from '@/features/productFilter/model/productFilterSlice';
+import productReducer from '../../pages/product/model/products';
+import filterReducer from '../../features/productFilter/model/productFilterSlice';
 
 const loadState = (): Basket => {
     try {
@@ -27,7 +31,7 @@ export const store = configureStore({
     preloadedState: {
         basket: loadState(),
     },
-    middleware: (getDefaultMiddleware) =>
+    middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: {
                 // Игнорируем несериализуемые значения (если есть)

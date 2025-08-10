@@ -1,8 +1,9 @@
-import { AppWrapper } from '@/App/components/AppWrapper';
-import './styles/mediaStyle.css';
+import { AppWrapper } from '@/app/components/AppWrapper';
+import './mediaStyle.css';
+import type { FC } from 'react';
 
-function App() {
+const App: FC = () => {
     return <AppWrapper />;
-}
+};
 
 export default App;

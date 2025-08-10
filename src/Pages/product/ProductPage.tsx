@@ -1,18 +1,18 @@
-import { NotAuthModal } from '@/Features/notAuthModal/NotAuthModal';
-import { UseModal } from '@/Features/notAuthModal/model/useModal';
-import { ProductCard } from './components/Product-card';
+import { NotAuthModal } from '@/features/notAuthModal/NotAuthModal';
+import { UseModal } from '@/features/notAuthModal/model/useModal';
+import { ProductCard } from '@/pages/product/components/Product-card';
 import type { Product, ProductPageProps } from '@/Types';
 import styles from '@/Pages/product/ProductPage.module.css';
-import { useEffect } from 'react';
+import { useEffect, type FC } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-export function ProductPage({
+export const ProductPage: FC<ProductPageProps> = ({
     visibleProducts,
     products,
     loadMoreRef,
     chosenFilter,
     addTo,
-}: ProductPageProps) {
+}) => {
     const { setShowModal, overlayRef, modalRef } = UseModal();
 
     const location = useLocation();
@@ -91,4 +91,4 @@ export function ProductPage({
             <NotAuthModal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef} />
         </>
     );
-}
+};

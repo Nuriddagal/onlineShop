@@ -1,12 +1,12 @@
-import type { Dispatch, SetStateAction } from 'react';
-import { Filter } from '@/Features/productFilter/Filter';
+import type { Dispatch, FC, SetStateAction } from 'react';
+import { Filter } from '../../features/productFilter/Filter';
 import { Header } from '@/widgets/header/Header';
-import { AppRoute } from '@/App/providers/AppRoute';
+import { AppRoute } from '@/app/providers/AppRoute';
 import { useSelector } from 'react-redux';
-import { selectChosenFilter } from '@/Features/productFilter/model/selectors';
+import { selectChosenFilter } from '../../features/productFilter/model/selectors';
 import type { Counts, Product } from '@/Types';
 import type { NavigateFunction } from 'react-router';
-import styles from '../styles/app.module.css';
+import styles from '../app.module.css';
 import { useLocation } from 'react-router';
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
     categories: string[];
 }
 
-export function MainLayout({
+export const MainLayout: FC<Props> = ({
     navigate,
     counts,
     visibleProducts,
@@ -37,7 +37,7 @@ export function MainLayout({
     setIsFilterOpen,
     isFilterOpen,
     categories,
-}: Props) {
+}) => {
     const chosenFilter: string[] = useSelector(selectChosenFilter);
     const location = useLocation();
     return (
@@ -57,4 +57,4 @@ export function MainLayout({
             {window.innerWidth <= 558 && <footer>footer</footer>}
         </>
     );
-}
+};

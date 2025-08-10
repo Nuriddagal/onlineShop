@@ -1,8 +1,9 @@
 import type { ReviewInfo } from '../../Types';
 import { Avatar, Rating } from '@mui/material';
 import style from './review.module.css';
+import type { FC } from 'react';
 
-export function Review({ reviewerName, date, rating, comment }: ReviewInfo) {
+export const Review: FC<ReviewInfo> = ({ reviewerName, date, rating, comment }) => {
     const dateOf = new Date(Date.parse(date));
     const reviewDate = `${dateOf.getDay()} ${dateOf.toLocaleString('eng', {
         month: 'short',
@@ -34,4 +35,4 @@ export function Review({ reviewerName, date, rating, comment }: ReviewInfo) {
             </>
         </>
     );
-}
+};

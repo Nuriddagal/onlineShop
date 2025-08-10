@@ -1,7 +1,8 @@
-import { BasketItemBtn } from './BasketItemBtn';
+import { BasketItemBtn } from '@/pages/basket/components/BasketItemBtn';
 import type { Counts, Product } from '@/Types';
 import styles from '@/Pages/basket/BasketCard.module.css';
 import { Delete } from '@mui/icons-material';
+import type { FC } from 'react';
 
 type BasketCardState = {
     product: Product;
@@ -11,7 +12,13 @@ type BasketCardState = {
     counts: Counts;
 };
 
-export function BasketCard({ product, addTo, removeFrom, deleteFrom, counts }: BasketCardState) {
+export const BasketCard: FC<BasketCardState> = ({
+    product,
+    addTo,
+    removeFrom,
+    deleteFrom,
+    counts,
+}) => {
     return (
         <>
             <div className={styles.card}>
@@ -62,4 +69,4 @@ export function BasketCard({ product, addTo, removeFrom, deleteFrom, counts }: B
             </div>
         </>
     );
-}
+};

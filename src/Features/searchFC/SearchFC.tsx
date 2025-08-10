@@ -1,6 +1,7 @@
 import { alpha, styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import type { FC } from 'react';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -41,7 +42,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     flex: 'stretch',
 }));
 
-export const SearchFC: React.FC = () => {
+export const SearchFC: FC = () => {
     return (
         <Search
             sx={{

@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { useLoadData } from '@/App/hooks/UseLoadData';
+import { useLoadData } from '@/app/hooks/useLoadData';
 
-import { useInfiniteScroll } from '@/App/hooks/useInfinityScroll';
+import { useInfiniteScroll } from '@/app/hooks/useInfinityScroll';
 
 import type { Product } from '@/Types';
 import { addToBasket, deleteFromBasket, removeFromBasket } from '@/pages/basket/model/basket';
-import type { RootState } from '@/App/model/state';
+import type { RootState } from '@/app/model/state';
 
 export function useAppLogic() {
     const [visibleProducts, setVisibleProducts] = useState(30);

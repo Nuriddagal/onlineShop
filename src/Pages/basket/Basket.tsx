@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router';
 import type { BasketState } from '@/Types';
 
 import styles from './Basket.module.css';
-import { UseModal } from '../../Features/notAuthModal/model/useModal';
-import { BasketCard } from './components/Basket-card';
-import { NotAuthModal } from '../../Features/notAuthModal/NotAuthModal';
-export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: BasketState) {
+import { UseModal } from '@/features/notAuthModal/model/useModal';
+import { BasketCard } from '@/pages/basket/components/Basket-card';
+import { NotAuthModal } from '@/features/notAuthModal/NotAuthModal';
+import type { FC } from 'react';
+
+export const Basket: FC<BasketState> = ({ basket, addTo, removeFrom, deleteFrom, counts }) => {
     const { setShowModal, overlayRef, modalRef } = UseModal();
     const navigate = useNavigate();
 
@@ -82,4 +84,4 @@ export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: Basket
             </div>
         </>
     );
-}
+};

@@ -1,8 +1,9 @@
 import type { CardState } from '@/Types';
 import { Favorite, ShoppingCart, StarOutline } from '@mui/icons-material';
 import styles from '@/Pages/product/ProductPage.module.css';
+import type { FC } from 'react';
 
-export function ProductCard({ product }: CardState) {
+export const ProductCard: FC<CardState> = ({ product }) => {
     return (
         <>
             <div className={`${styles.card} card`} id={product.id.toString()}>
@@ -25,4 +26,4 @@ export function ProductCard({ product }: CardState) {
             </div>
         </>
     );
-}
+};

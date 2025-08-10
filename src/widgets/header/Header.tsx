@@ -2,7 +2,7 @@ import { useLocation } from 'react-router';
 import type { HeaderProps } from '@/Types';
 import { useEffect, useState, type FC } from 'react';
 import Typography from '@mui/material/Typography';
-import { SearchFC } from '@/Features/searchFC/SearchFC';
+import { SearchFC } from '../../features/searchFC/SearchFC';
 import { FilterListAlt, ShoppingCart } from '@mui/icons-material';
 import styles from '@/widgets/header/header.module.css';
 

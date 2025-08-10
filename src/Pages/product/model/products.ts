@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@/app/model/state';
+import type { RootState } from '../../../app/model/state';
 import type { Products, ProductsState } from '@/Types';
 
 // Асинхронный запрос
@@ -14,7 +14,7 @@ export const fetchProducts = createAsyncThunk<Products, void, { state: RootState
         } catch (err) {
             throw new Error(err instanceof Error ? err.message : 'Unknown error occurred');
         }
-    },
+    }
 );
 
 const initialState: ProductsState = {
@@ -27,9 +27,9 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {},
-    extraReducers: (builder) => {
+    extraReducers: builder => {
         builder
-            .addCase(fetchProducts.pending, (state) => {
+            .addCase(fetchProducts.pending, state => {
                 state.loading = true;
                 state.error = null;
             })

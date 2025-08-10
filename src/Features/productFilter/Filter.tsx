@@ -1,17 +1,18 @@
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/App/model/state';
+import { useAppDispatch } from '../../app/model/state';
 
 import styles from './filter.module.css';
 import { toggleFilter } from '@/features/productFilter/model/productFilterSlice';
-import { Category } from '@/Features/productFilter/components/Category';
-import { isFilterSelected } from '@/Features/productFilter/model/selectors';
+import { Category } from '@/features/productFilter/components/Category';
+import { isFilterSelected } from '@/features/productFilter/model/selectors';
+import type { FC } from 'react';
 
 type Props = {
     categorys: string[];
     isFilterOpen: boolean;
 };
 
-export function Filter({ categorys, isFilterOpen }: Props) {
+export const Filter: FC<Props> = ({ categorys, isFilterOpen }) => {
     const dispatch = useAppDispatch();
     const menCategory = categorys.filter(c => c.startsWith('men'));
     const womenCategory = categorys.filter(c => c.startsWith('women'));
@@ -69,4 +70,4 @@ export function Filter({ categorys, isFilterOpen }: Props) {
             </fieldset>
         </div>
     );
-}
+};

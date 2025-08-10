@@ -6,7 +6,9 @@ import type { CardState } from '@/Types';
 import { DashboardInfo } from '@/entities/dashboard/DashboardInfo';
 import { Review } from '../../../entities/review/Review';
 import styles from '@/pages/dashboard/Dashboard.module.css';
-export function DashboardCard({ product, addTo, setShowModal }: CardState) {
+import type { FC } from 'react';
+
+export const DashboardCard: FC<CardState> = ({ product, addTo, setShowModal }) => {
     const navigate = useNavigate();
 
     const handleOrder = (): void => {
@@ -56,4 +58,4 @@ export function DashboardCard({ product, addTo, setShowModal }: CardState) {
             </div>
         </>
     );
-}
+};

@@ -1,6 +1,7 @@
 import type { ModalProps } from '@/Types';
 import styles from '@/Features/notAuthModal/NotAuthModal.module.css';
-export function NotAuthModal({ overlayRef, modalRef, setShowModal }: ModalProps) {
+import type { FC } from 'react';
+export const NotAuthModal: FC<ModalProps> = ({ overlayRef, modalRef, setShowModal }) => {
     return (
         <>
             {/* Затемняющий оверлей */}
@@ -32,4 +33,4 @@ export function NotAuthModal({ overlayRef, modalRef, setShowModal }: ModalProps)
             </div>
         </>
     );
-}
+};

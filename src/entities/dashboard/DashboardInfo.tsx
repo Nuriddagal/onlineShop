@@ -1,8 +1,9 @@
 import { Star } from '@mui/icons-material';
 import type { CardState } from '@/Types';
 import styles from '@/pages/dashboard/Dashboard.module.css';
+import type { FC } from 'react';
 
-export function DashboardInfo({ product }: Pick<CardState, 'product'>) {
+export const DashboardInfo: FC<Pick<CardState, 'product'>> = ({ product }) => {
     return (
         <>
             <div className={styles.info}>
@@ -60,4 +61,4 @@ export function DashboardInfo({ product }: Pick<CardState, 'product'>) {
             </div>
         </>
     );
-}
+};
