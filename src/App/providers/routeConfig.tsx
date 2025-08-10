@@ -1,9 +1,9 @@
 import type { RouteObject } from 'react-router-dom';
 
-import { ProductPage } from '../../pages/product/ProductPage';
+import { ProductPage } from '@/Pages/product/ProductPage';
 import type { BasketState, ProductPageProps } from '../../Types';
-import { Basket } from '@/pages/basket/Basket';
-import { Dashboard } from '@/pages/dashboard/Dashboard';
+import { Basket } from '@/Pages/basket/Basket';
+import { Dashboard } from '@/Pages/dashboard/Dashboard';
 
 export const routeConfig = (props: {
     productPage: ProductPageProps;

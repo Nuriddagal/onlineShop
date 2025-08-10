@@ -1,9 +1,9 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { Filter } from '@/features/productFilter/Filter';
-import { Header } from '@/widgets/header/ui/header';
-import { AppRoute } from '../providers/AppRoute';
+import { Filter } from '@/Features/productFilter/Filter';
+import { Header } from '@/widgets/header/Header';
+import { AppRoute } from '@/App/providers/AppRoute';
 import { useSelector } from 'react-redux';
-import { selectChosenFilter } from '@/features/productFilter/model/selectors';
+import { selectChosenFilter } from '@/Features/productFilter/model/selectors';
 import type { Counts, Product } from '@/Types';
 import type { NavigateFunction } from 'react-router';
 import styles from '../styles/app.module.css';

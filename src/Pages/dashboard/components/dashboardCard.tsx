@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router';
 
-import { ShoppingCart } from '@mui/icons-material';
-import { DashboardSwiper } from '../../../entities/dashboard/dashboardSwiper';
+import { Favorite, ShoppingCart } from '@mui/icons-material';
+import { DashboardSwiper } from '../../../entities/dashboard/DashboardSwiper';
 import type { CardState } from '@/Types';
-import { HeartSvg } from '@/svg/heartSvg';
 import { DashboardInfo } from '@/entities/dashboard/DashboardInfo';
-import { Review } from '@/entities/review/review';
+import { Review } from '../../../entities/review/Review';
 import styles from '@/pages/dashboard/Dashboard.module.css';
 export function DashboardCard({ product, addTo, setShowModal }: CardState) {
     const navigate = useNavigate();
@@ -30,7 +29,7 @@ export function DashboardCard({ product, addTo, setShowModal }: CardState) {
                     className={styles.favoriteIcon}
                     onClick={() => (setShowModal ? setShowModal(true) : '')}
                 >
-                    <HeartSvg />
+                    <Favorite />
                 </button>
 
                 <DashboardInfo product={product} />

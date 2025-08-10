@@ -1,5 +1,4 @@
-import { AppWrapper } from '@/app/components/AppWrapper';
-import './styles/App.css';
+import { AppWrapper } from '@/App/components/AppWrapper';
 import './styles/mediaStyle.css';
 
 function App() {

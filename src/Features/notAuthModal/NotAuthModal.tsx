@@ -1,18 +1,18 @@
 import type { ModalProps } from '@/Types';
-
-export function AuthModal({ overlayRef, modalRef, setShowModal }: ModalProps) {
+import styles from '@/Features/notAuthModal/NotAuthModal.module.css';
+export function NotAuthModal({ overlayRef, modalRef, setShowModal }: ModalProps) {
     return (
         <>
             {/* Затемняющий оверлей */}
-            <div ref={overlayRef} className="modal-overlay"></div>
+            <div ref={overlayRef} className={styles.modalOverlay}></div>
 
             {/* Модальное окно */}
-            <div ref={modalRef} className="notSignIn">
+            <div ref={modalRef} className={styles.notSignIn}>
                 <p>!!FIRST LOG IN!!</p>
                 <div>
                     <button
                         type="button"
-                        className="modalClose"
+                        className={styles.modalBtn}
                         onClick={() => {
                             alert('Server not ready yet!');
                             setShowModal(false);
@@ -20,9 +20,10 @@ export function AuthModal({ overlayRef, modalRef, setShowModal }: ModalProps) {
                     >
                         Log In
                     </button>
+
                     <button
                         type="button"
-                        className="modalClose"
+                        className={styles.modalBtn}
                         onClick={() => setShowModal(false)}
                     >
                         close

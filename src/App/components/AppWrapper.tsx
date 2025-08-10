@@ -1,6 +1,6 @@
-import { useAppLogic } from '../hooks/useApplogic';
-import { MainLayout } from './MainLayout';
-import { ProductEmptyState } from './ProductEmptyState';
+import { useAppLogic } from '@/App/hooks/useApplogic';
+import { MainLayout } from '@/App/components/MainLayout';
+import { ProductEmptyState } from '@/App/components/ProductEmptyState';
 
 const categories = [
     'beauty',

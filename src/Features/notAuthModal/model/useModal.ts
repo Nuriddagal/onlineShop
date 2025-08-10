@@ -9,7 +9,7 @@ export function UseModal() {
 
     useEffect(() => {
         const b = document.body;
-
+        if (!(modalRef.current && overlayRef.current)) return;
         if (showModal) {
             // Сохраняем позицию скролла
             scrollPosition.current = window.scrollY;
@@ -19,8 +19,8 @@ export function UseModal() {
             b.style.top = `-${scrollPosition.current}px`;
             b.style.width = '100%';
 
-            overlayRef.current?.classList.add('active');
-            modalRef.current?.classList.add('open');
+            overlayRef.current.style.opacity = '1';
+            modalRef.current.style.display = 'flex';
         } else {
             // Разблокируем скролл и восстанавливаем позицию
             b.style.overflow = '';
@@ -29,8 +29,8 @@ export function UseModal() {
             b.style.width = '';
             window.scrollTo(0, scrollPosition.current);
 
-            overlayRef.current?.classList.remove('active');
-            modalRef.current?.classList.remove('open');
+            overlayRef.current.style.opacity = '0';
+            modalRef.current.style.display = 'none';
         }
     }, [showModal]);
 

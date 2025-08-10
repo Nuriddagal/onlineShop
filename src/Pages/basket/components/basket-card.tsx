@@ -1,7 +1,7 @@
-import { BasketItemBtn } from './basketItemBtn';
-import { DeleteSvg } from '@/svg/deleteSvg';
+import { BasketItemBtn } from './BasketItemBtn';
 import type { Counts, Product } from '@/Types';
-import styles from '../basketCard.module.css';
+import styles from '@/Pages/basket/BasketCard.module.css';
+import { Delete } from '@mui/icons-material';
 
 type BasketCardState = {
     product: Product;
@@ -24,7 +24,7 @@ export function BasketCard({ product, addTo, removeFrom, deleteFrom, counts }: B
                     className={styles.delete}
                     onClick={() => deleteFrom?.(product)}
                 >
-                    <DeleteSvg />
+                    <Delete />
                 </button>
 
                 <p className={styles.price}>

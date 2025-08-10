@@ -1,8 +1,8 @@
-import { AuthModal } from '../../features/authModal/AuthModal';
-import { UseModal } from '@/features/authModal/model/useModal';
-import { ProductCard } from '@/pages/product/components/product-card';
+import { NotAuthModal } from '@/Features/notAuthModal/NotAuthModal';
+import { UseModal } from '@/Features/notAuthModal/model/useModal';
+import { ProductCard } from './components/Product-card';
 import type { Product, ProductPageProps } from '@/Types';
-
+import styles from '@/Pages/product/ProductPage.module.css';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -17,7 +17,7 @@ export function ProductPage({
 
     const location = useLocation();
 
-    const productsArr: Product[] = products.slice(0, visibleProducts).filter((product) => {
+    const productsArr: Product[] = products.slice(0, visibleProducts).filter(product => {
         if (chosenFilter.length !== 0) {
             return chosenFilter.includes(product.category);
         }
@@ -29,7 +29,7 @@ export function ProductPage({
 
     const handleOnClick = (e: React.MouseEvent) => {
         const target = e.target as HTMLElement;
-        const card = target.closest('.products__card');
+        const card = target.closest('.card');
 
         // Проверяем клик по конкретным элементам
         const isBasketButton = target.closest('.basket-button') !== null;
@@ -73,11 +73,11 @@ export function ProductPage({
 
     return (
         <>
-            <div className="products">
-                <div className="products__wrapper" onClick={handleOnClick}>
+            <div className={styles.products}>
+                <div className={styles.wrapper} onClick={handleOnClick}>
                     {/* Рендер товаров */}
                     {productsArr.length !== 0 &&
-                        productsArr.map((product) => (
+                        productsArr.map(product => (
                             <ProductCard
                                 key={product.id}
                                 product={product}
@@ -88,7 +88,7 @@ export function ProductPage({
                 <div ref={loadMoreRef}></div>
             </div>
 
-            <AuthModal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef} />
+            <NotAuthModal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef} />
         </>
     );
 }

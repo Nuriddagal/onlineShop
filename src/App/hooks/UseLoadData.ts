@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { AppDispatch } from '@/app/model/state';
+import type { AppDispatch } from '@/App/model/state';
 import { fetchProducts } from '@/pages/product/model/products';
 
 export const useLoadData = (dispatch: AppDispatch): void => {

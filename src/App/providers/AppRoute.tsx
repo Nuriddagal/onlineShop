@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { routeConfig } from './routeConfig';
-import type { AppRouteProps } from '../../Types';
+import { routeConfig } from '@/App/providers/routeConfig';
+import type { AppRouteProps } from '@/Types';
 
 export function AppRoute({ productPage, basketState }: AppRouteProps) {
     const routes = routeConfig({ productPage, basketState });

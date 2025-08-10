@@ -43,7 +43,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const SearchFC: React.FC = () => {
     return (
-        <Search>
+        <Search
+            sx={{
+                '@media (max-width: 480px)': {
+                    display: 'none',
+                },
+            }}
+        >
             <SearchIconWrapper>
                 <SearchIcon fontSize="large" />
             </SearchIconWrapper>

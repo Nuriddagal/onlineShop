@@ -1,0 +1,47 @@
+.notSignIn {
+    width: 30%;
+    height: 20%;
+    position: fixed;
+    top: 40vh;
+    border-radius: var(--main-radius);
+    box-shadow: 0 0 0 5px #0b5ac0 inset;
+    border: 1px solid #0b5ac0;
+    z-index: 3;
+    display: none;
+    background-color: white;
+    z-index: 1000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.notSignIn p {
+    font-size: 30px;
+    font-variant: small-caps;
+    text-align: center;
+}
+.modalBtn {
+    background-color: rgb(49, 155, 197);
+    border: none;
+    color: white;
+    font-variant: small-caps;
+    border-radius: var(--main-radius);
+    padding: 5px;
+    margin: 7px;
+    font-size: 20px;
+}
+.modalOverlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}

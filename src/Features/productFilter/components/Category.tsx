@@ -1,4 +1,3 @@
-// features/productFilter/ui/Category.tsx
 type Props = {
     category: string;
     checked: boolean;
