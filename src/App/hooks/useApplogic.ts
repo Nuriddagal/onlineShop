@@ -7,7 +7,7 @@ import { useLoadData } from '@/app/hooks/useLoadData';
 import { useInfiniteScroll } from '@/app/hooks/useInfinityScroll';
 
 import type { Product } from '@/Types';
-import { addToBasket, deleteFromBasket, removeFromBasket } from '@/pages/basket/model/basket';
+import { addToBasket, deleteFromBasket, removeFromBasket } from '../../pages/basket/model/basket';
 import type { RootState } from '@/app/model/state';
 
 export function useAppLogic() {

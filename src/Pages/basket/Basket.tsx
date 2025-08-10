@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router';
 import type { BasketState } from '@/Types';
 
 import styles from './Basket.module.css';
-import { UseModal } from '@/features/notAuthModal/model/useModal';
+import { UseModal } from '../../features/notAuthModal/model/useModal';
 import { BasketCard } from '@/pages/basket/components/Basket-card';
-import { NotAuthModal } from '@/features/notAuthModal/NotAuthModal';
+import { NotAuthModal } from '../../features/notAuthModal/NotAuthModal';
 import type { FC } from 'react';
 
 export const Basket: FC<BasketState> = ({ basket, addTo, removeFrom, deleteFrom, counts }) => {

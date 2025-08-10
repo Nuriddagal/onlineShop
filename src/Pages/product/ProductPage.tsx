@@ -1,5 +1,5 @@
-import { NotAuthModal } from '@/features/notAuthModal/NotAuthModal';
-import { UseModal } from '@/features/notAuthModal/model/useModal';
+import { NotAuthModal } from '../../features/notAuthModal/NotAuthModal';
+import { UseModal } from '../../features/notAuthModal/model/useModal';
 import { ProductCard } from '@/pages/product/components/Product-card';
 import type { Product, ProductPageProps } from '@/Types';
 import styles from '@/Pages/product/ProductPage.module.css';

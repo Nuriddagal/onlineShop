@@ -6,7 +6,7 @@ import { store } from './app/model/state';
 
 import '@/app/App.css';
 import { HashRouter } from 'react-router';
-import App from '@/app/App';
+import App from './app/App';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
