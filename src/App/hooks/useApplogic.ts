@@ -1,4 +1,3 @@
-// src/hooks/useAppLogic.ts
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -8,8 +7,8 @@ import { useLoadData } from './UseLoadData';
 import { useInfiniteScroll } from './useInfinityScroll';
 
 import type { Product } from '../../Types';
-import { addToBasket, deleteFromBasket, removeFromBasket } from '@/Pages/basket/model/basket';
-import type { RootState } from '../model/state';
+import { addToBasket, deleteFromBasket, removeFromBasket } from '@/pages/basket/model/basket';
+import type { RootState } from '@/app/model/state';
 
 export function useAppLogic() {
     const [visibleProducts, setVisibleProducts] = useState(30);
@@ -22,7 +21,7 @@ export function useAppLogic() {
     const { basket, counts } = useSelector((state: RootState) => state.basket);
 
     const loadMore = () => {
-        setVisibleProducts(prev => Math.min(prev + 30, data?.products?.length || 0));
+        setVisibleProducts((prev) => Math.min(prev + 30, data?.products?.length || 0));
     };
 
     const { loadMoreRef } = useInfiniteScroll(loadMore, loading);

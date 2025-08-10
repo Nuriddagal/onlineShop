@@ -1,5 +1,3 @@
-// src/components/AppWrapper.tsx
-
 import { useAppLogic } from '../hooks/useApplogic';
 import { MainLayout } from './MainLayout';
 import { ProductEmptyState } from './ProductEmptyState';

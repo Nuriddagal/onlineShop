@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from 'react-router';
-import { DashboardCard } from '../../dashboardCard';
+import { DashboardCard } from '@/pages/dashboard/components/dashboardCard';
 import { useEffect, useState } from 'react';
-import type { Product } from '../../../Types';
+import type { Product } from '@/Types';
 import { useDispatch } from 'react-redux';
-import { addToBasket } from '../../basket/model/basket';
+import { addToBasket } from '@/pages/basket/model/basket';
+import styles from './Dashboard.module.css';
 
 export function Dashboard() {
     const { dashboardId } = useParams();
@@ -52,8 +53,8 @@ export function Dashboard() {
         );
 
     return (
-        <div className="dashboard">
-            <button type="button" className="to-main" onClick={() => navigate(-1)}>
+        <div className={styles.dashboard}>
+            <button type="button" className={styles.toMain} onClick={() => navigate(-1)}>
                 TO MAIN PAGE
             </button>
             <DashboardCard product={product} addTo={addTo} />

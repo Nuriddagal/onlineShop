@@ -29,7 +29,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.25.0",
-        "@nuriddagal/dev-config": "^1.0.14-g",
+        "@nuriddagal/dev-config": "^1.0.21",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.2",
         "@types/react-redux": "^7.1.34",

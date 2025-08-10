@@ -1,0 +1,37 @@
+.review {
+    width: 33%;
+    height: fit-content;
+    padding: 10px;
+    background-color: white;
+    border-radius: var(--main-radius);
+    box-shadow: -2px -2px 10px 1px gray;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta:last-child {
+    color: gray;
+}
+.comment {
+    font-style: italic;
+}
+@media (max-width: 1024px) {
+    .review {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+}

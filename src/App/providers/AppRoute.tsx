@@ -1,4 +1,3 @@
-// app/providers/router/AppRoute.tsx
 import { Routes, Route } from 'react-router-dom';
 import { routeConfig } from './routeConfig';
 import type { AppRouteProps } from '../../Types';

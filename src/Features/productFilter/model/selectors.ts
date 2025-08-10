@@ -1,4 +1,4 @@
-import type { RootState } from '../../../App/state';
+import type { RootState } from '@/app/model/state';
 
 export const selectChosenFilter = (state: RootState) => state.filter.chosenFilter;
 

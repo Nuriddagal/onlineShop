@@ -1,4 +1,3 @@
-// src/hooks/useInfiniteScroll.ts
 import { useCallback, useRef, useEffect } from 'react';
 
 export function useInfiniteScroll(callback: () => void, loading: boolean) {
@@ -14,7 +13,7 @@ export function useInfiniteScroll(callback: () => void, loading: boolean) {
                     callback();
                 }
             },
-            { threshold: 0.1 }
+            { threshold: 0.1 },
         );
 
         if (loadMoreRef.current) {

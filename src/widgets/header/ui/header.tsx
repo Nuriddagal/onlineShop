@@ -2,7 +2,7 @@ import { useLocation } from 'react-router';
 import type { HeaderProps } from '../../../Types';
 import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { SearchFC } from '@/Features/search/ui/search';
+import { SearchFC } from '../../../features/search/searchFC';
 import { FilterListAlt, ShoppingCart } from '@mui/icons-material';
 export function Header({ navigate, counts, setIsFilterOpen }: HeaderProps) {
     const location = useLocation();

@@ -1,6 +1,6 @@
 import type { ModalProps } from '@/Types';
 
-export function Modal({ overlayRef, modalRef, setShowModal }: ModalProps) {
+export function AuthModal({ overlayRef, modalRef, setShowModal }: ModalProps) {
     return (
         <>
             {/* Затемняющий оверлей */}

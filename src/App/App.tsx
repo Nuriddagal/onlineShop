@@ -1,7 +1,6 @@
-// src/App.tsx
+import { AppWrapper } from '@/app/components/AppWrapper';
 import './styles/App.css';
 import './styles/mediaStyle.css';
-import { AppWrapper } from './ui/AppWrapper';
 
 function App() {
     return <AppWrapper />;

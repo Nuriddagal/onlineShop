@@ -1,7 +1,7 @@
-import { HeartSvg } from '../svg/heartSvg';
-import { StarSvg } from '../svg/starSvg';
-import type { CardState } from '../Types';
 import { ShoppingCart } from '@mui/icons-material';
+import type { CardState } from '../../../Types';
+import { HeartSvg } from '../../../svg/heartSvg';
+import { StarSvg } from '../../../svg/starSvg';
 
 export function ProductCard({ product }: CardState) {
     return (

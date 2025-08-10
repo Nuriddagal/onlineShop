@@ -1,4 +1,3 @@
-// src/components/ProductEmptyState.tsx
 export function ProductEmptyState() {
     return (
         <div className="empty-state">

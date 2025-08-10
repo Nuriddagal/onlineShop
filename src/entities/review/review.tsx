@@ -1,5 +1,6 @@
-import type { ReviewInfo } from '../../../Types';
+import type { ReviewInfo } from '../../Types';
 import { Avatar, Rating } from '@mui/material';
+import style from './review.module.css';
 
 export function Review({ reviewerName, date, rating, comment }: ReviewInfo) {
     const dateOf = new Date(Date.parse(date));
@@ -9,16 +10,16 @@ export function Review({ reviewerName, date, rating, comment }: ReviewInfo) {
     return (
         <>
             <>
-                <div className="review">
-                    <div className="review__head">
-                        <p className="review-name">
+                <div className={style.review}>
+                    <div className={style.head}>
+                        <p className={style.name}>
                             <Avatar sx={{ width: '24px', height: '24px', fontSize: '14px' }}>
                                 {reviewerName.split(' ')[0][0]}
                                 {reviewerName.split(' ')[1][0]}
                             </Avatar>
                             <span>{reviewerName}</span>
                         </p>
-                        <div className="review__meta">
+                        <div className={style.meta}>
                             <Rating
                                 name="size-large"
                                 defaultValue={rating}
@@ -28,7 +29,7 @@ export function Review({ reviewerName, date, rating, comment }: ReviewInfo) {
                             <span>{reviewDate}</span>
                         </div>
                     </div>
-                    <p className="review__comment">{comment}</p>
+                    <p className={style.comment}>{comment}</p>
                 </div>
             </>
         </>

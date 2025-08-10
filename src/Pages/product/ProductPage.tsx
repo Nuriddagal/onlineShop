@@ -1,9 +1,10 @@
-import { ProductCard } from '@/Pages/product-card';
-import type { ProductPageProps } from '@/Types';
-import { UseModal } from '@/Features/modal/model/useModal';
+import { AuthModal } from '../../features/authModal/AuthModal';
+import { UseModal } from '@/features/authModal/model/useModal';
+import { ProductCard } from '@/pages/product/components/product-card';
+import type { Product, ProductPageProps } from '@/Types';
+
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { Modal } from '@/Features/modal/ui/modal';
 
 export function ProductPage({
     visibleProducts,
@@ -16,6 +17,12 @@ export function ProductPage({
 
     const location = useLocation();
 
+    const productsArr: Product[] = products.slice(0, visibleProducts).filter((product) => {
+        if (chosenFilter.length !== 0) {
+            return chosenFilter.includes(product.category);
+        }
+        return true;
+    });
     UseModal();
 
     const navigate = useNavigate();
@@ -69,33 +76,19 @@ export function ProductPage({
             <div className="products">
                 <div className="products__wrapper" onClick={handleOnClick}>
                     {/* Рендер товаров */}
-                    {chosenFilter.length !== 0 &&
-                        products.slice(0, visibleProducts).map(product => {
-                            if (chosenFilter.includes(product.category)) {
-                                return (
-                                    <ProductCard
-                                        key={product.id}
-                                        product={product}
-                                        setShowModal={setShowModal}
-                                    />
-                                );
-                            }
-                        })}
-                    {chosenFilter.length === 0 &&
-                        products
-                            .slice(0, visibleProducts)
-                            .map(product => (
-                                <ProductCard
-                                    key={product.id}
-                                    product={product}
-                                    setShowModal={setShowModal}
-                                />
-                            ))}
+                    {productsArr.length !== 0 &&
+                        productsArr.map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                setShowModal={setShowModal}
+                            />
+                        ))}
                 </div>
                 <div ref={loadMoreRef}></div>
             </div>
 
-            <Modal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef} />
+            <AuthModal overlayRef={overlayRef} setShowModal={setShowModal} modalRef={modalRef} />
         </>
     );
 }

@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router';
 import type { BasketState } from '@/Types';
-import { UseModal } from '@/Features/modal/model/useModal';
-import { BasketCard } from './basket-card';
-import { Modal } from '@/Features/modal/ui/modal';
+
 import styles from './Basket.module.css';
+import { UseModal } from '@/features/authModal/model/useModal';
+import { BasketCard } from './components/basket-card';
+import { AuthModal } from '@/features/authModal/AuthModal';
 export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: BasketState) {
     const { setShowModal, overlayRef, modalRef } = UseModal();
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: Basket
                             </button>
                         </div>
 
-                        {basket.map(product => (
+                        {basket.map((product) => (
                             <BasketCard
                                 key={product.id}
                                 counts={counts}
@@ -71,7 +72,7 @@ export function Basket({ basket, addTo, removeFrom, deleteFrom, counts }: Basket
                         >
                             Order
                         </button>
-                        <Modal
+                        <AuthModal
                             overlayRef={overlayRef}
                             setShowModal={setShowModal}
                             modalRef={modalRef}

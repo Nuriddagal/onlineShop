@@ -1,7 +1,7 @@
-import { BasketItemBtn } from '@/entities/basket/ui/basketItemBtn';
-import { DeleteSvg } from '../../../svg/deleteSvg';
+import { BasketItemBtn } from './basketItemBtn';
+import { DeleteSvg } from '@/svg/deleteSvg';
 import type { Counts, Product } from '@/Types';
-import styles from './basketCard.module.css';
+import styles from '../basketCard.module.css';
 
 type BasketCardState = {
     product: Product;
