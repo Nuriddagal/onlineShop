@@ -5,145 +5,16 @@
     }
 }
 
-/* Планшеты (768px - 1024px) */
-/* @media (max-width: 1024px) {
-    .products__wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 20px;
-    }
-
-    .review {
-        width: 80%;
-        margin-bottom: 15px;
-    }
-} */
-
 /* Мобильные устройства (до 768px) */
 @media (max-width: 768px) {
     :root {
         --main-radius: 8px;
     }
-
-    /* .header {
-        height: 80px;
-    }
-
-    .header h1 {
-        font-size: 28px;
-    }
-
-    .wrapper {
-        margin-top: 80px;
-        padding: 15px 0;
-    }
-
-    .products__wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
-        padding: 0 10px;
-    }
-
-    .image-wrapper {
-        height: 180px;
-    }
-
-    .products__price {
-        font-size: 18px;
-    }
-
-    .products__title {
-        font-size: 14px;
-    }
-
-    /* Модальное окно для мобильных */
-    /* .notSignIn.open {
-        width: 80%;
-        left: 10%;
-        top: 30%;
-    }
-
-    /* Фильтр для мобильных */
-    /* .filter-menu {
-        width: 280px;
-        top: 80px;
-        transform: translateX(280px);
-    } */
-    /* .filter-menu.open-filter {
-        transform: translateX(0);
-    } */
 }
-/* Мелкие мобильные (до 480px) */
-/* @media (max-width: 480px) {
-    .header {
-        height: 70px;
-    }
-    .filter-menu {
-        top: 70px;
-    }
-
-    .header h1 {
-        font-size: 40px;
-    }
-    #search {
-        display: none;
-    }
-    .products__wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 10px;
-    }
-
-    .image-wrapper {
-        height: 150px;
-    }
-
-    .basket-button,
-    .order-button {
-        height: 25px;
-        font-size: 12px;
-        gap: 5px;
-    }
-
-    .basket-button .basket-img {
-        width: 20px;
-        height: 20px;
-    }
-
-    #search {
-        height: 40%;
-        padding: 5px;
-    }
-
-    #search:placeholder-shown {
-        font-size: 16px;
-    }
-
-    .favorite-icon svg {
-        width: 20px;
-        height: 20px;
-    }
-} */
-
-/* Дополнительные улучшения для touch-устройств */
-/* @media (hover: none) {
-    .basket-button:hover,
-    .favorite-icon:hover,
-    .filter:hover svg {
-        background-color: #377dd8;
-        fill: white;
-    }
-} */
 
 /* Улучшение читаемости на маленьких экранах */
 @media (max-width: 360px) {
     :root {
         font-size: 12px;
     }
-
-    /* .products__wrapper {
-        grid-template-columns: 1fr 1fr;
-    }
-    .filter-menu {
-        height: 100vh;
-        overflow-y: scroll;
-    } */
 }

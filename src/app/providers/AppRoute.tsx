@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { routeConfig } from '@/add/providers/routeConfig';
+import { routeConfig } from '@/app/providers/routeConfig';
 import type { AppRouteProps } from '@/Types';
 import type { FC } from 'react';
 
