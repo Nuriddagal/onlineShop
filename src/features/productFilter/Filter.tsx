@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../app/model/state';
+import type { FC } from 'react';
 
 import styles from './filter.module.css';
 import { toggleFilter } from '@/features/productFilter/model/productFilterSlice';
 import { Category } from '@/features/productFilter/components/Category';
 import { isFilterSelected } from '@/features/productFilter/model/selectors';
-import type { FC } from 'react';
 
 type Props = {
     categorys: string[];

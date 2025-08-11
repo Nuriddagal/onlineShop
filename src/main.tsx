@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { Provider } from 'react-redux';
 import { store } from './app/model/state';
-
+import '@/app/mediaStyle.css';
 import '@/app/App.css';
 import { HashRouter } from 'react-router';
 import App from './app/App';
